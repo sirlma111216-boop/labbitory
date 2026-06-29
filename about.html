@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About — labbitory.com</title>
+<meta name="description" content="중학교 과학 교사 김도윤 선생님이 만든 AI 에듀테크 플랫폼, labbitory.com을 소개합니다.">
+<link rel="icon" type="image/png" href="assets/logo-circle.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+  /* ===== About layout (single screen, no scroll) ===== */
+  .about-wrap{
+    display:flex; align-items:center; gap:clamp(28px,6vw,80px);
+    flex-wrap:wrap; justify-content:center; width:100%; max-width:1040px;
+  }
+  .about-figure{ flex:none; position:relative; }
+  .about-figure img{
+    width:clamp(220px,30vw,340px); height:auto; display:block; border-radius:50%;
+    filter:drop-shadow(0 22px 40px rgba(14,158,148,.26));
+    animation:lab-float 6s ease-in-out infinite;
+  }
+  @keyframes lab-float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+  .about-body{ flex:1; min-width:min(100%,340px); max-width:540px; text-align:left; }
+  .about-body .eyebrow{ text-align:left; }
+  .about-body .title{ text-align:left; font-size:clamp(30px,4.4vw,48px); }
+  .about-lead{
+    margin:18px 0 0; font-size:clamp(15px,1.95vh,17.5px); line-height:1.72;
+    color:#46555C; text-wrap:pretty;
+  }
+  .about-lead + .about-lead{ margin-top:14px; }
+  .about-lead b{ color:#0E9E94; font-weight:700; }
+  .about-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .about-tag{ font-size:13px; font-weight:600; color:#0E9E94; background:#ECFBF6;
+    padding:7px 14px; border-radius:999px; }
+  .about-cta{
+    display:inline-flex; align-items:center; gap:9px; margin-top:26px;
+    padding:15px 28px; border-radius:999px;
+    background:linear-gradient(135deg,#2DD4BF,#0E9E94); color:#FFFFFF;
+    font-size:16px; font-weight:700; text-decoration:none;
+    box-shadow:0 12px 26px rgba(14,158,148,.30);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .about-cta:hover, .about-cta:focus-visible{
+    transform:translateY(-2px); box-shadow:0 16px 32px rgba(14,158,148,.38); outline:none;
+  }
+
+  @media (max-width:760px){
+    .about-body, .about-body .eyebrow, .about-body .title{ text-align:center; }
+    .about-tags{ justify-content:center; }
+    .about-figure img{ width:clamp(170px,40vw,230px); }
+  }
+  @media (prefers-reduced-motion:reduce){ .about-figure img{ animation:none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="blob blob-tr"></div>
+  <div class="blob blob-bl"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/logo-circle.png" alt="labbitory 로고">
+      <span>labbitory<i>.com</i></span>
+    </a>
+    <a class="crumb" href="index.html">← 홈으로</a>
+  </header>
+
+  <main>
+    <div class="about-wrap">
+      <div class="about-figure">
+        <img src="assets/mascot-about.png" alt="엄지를 든 래비토리 마스코트">
+      </div>
+
+      <div class="about-body">
+        <p class="eyebrow">About</p>
+        <h1 class="title">모두를 위한<br>과학 실험실</h1>
+
+        <p class="about-lead">labbitory.com은 중학교 과학 교사 <b>김도윤</b> 선생님이 만든 AI 에듀테크 플랫폼이에요. 버니어·파스코 척척박사부터 교실에서 쓸만한 작은 앱까지, 과학 수업과 학급 운영에 진짜 도움이 되는 도구를 직접 만들어 한곳에 모았어요.</p>
+        <p class="about-lead">학생에게는 과학 탐구를 <b>더 쉽고 즐겁게</b>, 선생님에게는 수업 준비와 학급 운영의 수고를 덜어주는 것 — 그게 이 작은 실험실이 바라는 모습이에요.</p>
+
+        <div class="about-tags">
+          <span class="about-tag">중학교 과학</span>
+          <span class="about-tag">AI 탐구 도구</span>
+          <span class="about-tag">교실에서 쓸만한 앱</span>
+        </div>
+
+        <a class="about-cta" href="https://teacher.labbitory.com" target="_blank" rel="noopener">김도윤 선생님 소개 →</a>
+      </div>
+    </div>
+  </main>
+</div>
+</body></html>

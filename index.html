@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>labbitory.com — AI로 과학 탐구를 더 쉽고 즐겁게</title>
+<meta name="description" content="중학교 과학 교사가 만든 AI 에듀테크 플랫폼. 버니어·파스코 척척박사와 함께 과학 탐구를 더 쉽고 즐겁게.">
+<meta property="og:title" content="labbitory.com">
+<meta property="og:description" content="AI로 과학 탐구를 더 쉽고 즐겁게 — 모두를 위한 과학 실험실">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/logo-circle.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:#1E2A32;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ -webkit-tap-highlight-color:transparent; }
+
+  .page{
+    position:relative;
+    min-height:100vh;
+    min-height:100svh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    padding:34px clamp(20px,4.5vw,72px) 32px;
+    background:
+      radial-gradient(120% 90% at 12% 0%, #ECFBF6 0%, rgba(236,251,246,0) 55%),
+      radial-gradient(110% 80% at 92% 100%, #E6F7F4 0%, rgba(230,247,244,0) 50%),
+      #FBF8F1;
+    overflow:hidden;
+  }
+  .blob{ position:absolute; border-radius:50%; pointer-events:none; }
+  .blob-tr{ top:-90px; right:-60px; width:340px; height:340px;
+    background:radial-gradient(circle at 40% 35%, rgba(45,212,191,.18), rgba(45,212,191,0) 70%); }
+  .blob-bl{ bottom:-110px; left:-70px; width:360px; height:360px;
+    background:radial-gradient(circle at 50% 50%, rgba(244,98,58,.10), rgba(244,98,58,0) 70%); }
+
+  /* ===== HEADER ===== */
+  header{
+    position:relative; z-index:2;
+    display:flex; align-items:center; gap:16px; min-height:60px;
+  }
+  .logo{ flex:none; width:96px; height:96px; border-radius:50%;
+    filter:drop-shadow(0 6px 16px rgba(14,158,148,.22)); }
+  nav{
+    flex:1; display:flex; align-items:flex-start; gap:12px;
+    flex-wrap:wrap; justify-content:center;
+  }
+  .nav-spacer{ flex:none; width:96px; }
+  .tab{
+    display:inline-flex; align-items:center;
+    padding:14px 26px; border-radius:999px;
+    background:#FFFFFF; border:1.5px solid #E4EBE9;
+    color:#26343B; font-size:17px; font-weight:600;
+    text-decoration:none; white-space:nowrap;
+    box-shadow:0 2px 5px rgba(30,42,50,.05);
+    transition:all .18s ease;
+  }
+  .tab:hover, .tab:focus-visible{
+    background:#0E9E94; border-color:#0E9E94; color:#FFFFFF;
+    transform:translateY(-2px); box-shadow:0 10px 22px rgba(14,158,148,.30);
+    outline:none;
+  }
+
+  /* ===== HERO ===== */
+  main{
+    position:relative; z-index:2; flex:1;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:clamp(10px,1.6vh,22px); text-align:center; min-height:0;
+  }
+  .mascots{ position:relative; }
+  .mascots{ animation:lab-float 6s ease-in-out infinite; }
+  .mascots .glow{
+    position:absolute; left:50%; top:54%; transform:translate(-50%,-50%);
+    width:clamp(180px,30vh,290px); height:clamp(180px,30vh,290px); border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(45,212,191,.26), rgba(45,212,191,0) 68%);
+    filter:blur(6px);
+  }
+  .mascot-row{
+    position:relative; display:flex; align-items:flex-end; justify-content:center;
+  }
+  .mascot-row img{ width:auto; filter:drop-shadow(0 16px 22px rgba(14,158,148,.20)); }
+  .m-wave{ height:clamp(150px,26vh,250px); display:block; }
+  .bubble{ position:absolute; border-radius:50%; }
+  .bubble-1{ top:18px; right:-18px; width:14px; height:14px; background:#2DD4BF; opacity:.85;
+    animation:lab-bubble 3.4s ease-in-out infinite; }
+  .bubble-2{ bottom:40px; left:-24px; width:9px; height:9px; background:#F4623A; opacity:.7;
+    animation:lab-bubble 2.6s ease-in-out .6s infinite; }
+
+  .wordmark{
+    margin:0; font-family:'Sora',sans-serif; font-weight:800;
+    font-size:clamp(54px,10.5vw,150px); line-height:.92;
+    letter-spacing:-.035em; color:#1E2A32;
+  }
+  .wordmark .dot{
+    background:linear-gradient(120deg,#16B3A6,#0E9E94);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:#0E9E94;
+  }
+  .tagline{
+    margin:0; font-size:clamp(16px,2.2vh,22px); font-weight:500;
+    color:#5A6B72; max-width:680px; line-height:1.5;
+  }
+  .tagline b{ color:#0E9E94; font-weight:700; }
+  .cta-row{
+    display:flex; align-items:center; gap:12px;
+    margin-top:clamp(4px,1.2vh,12px); flex-wrap:wrap; justify-content:center;
+  }
+  .cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 30px; border-radius:999px;
+    background:linear-gradient(135deg,#F4623A,#E24E2A);
+    color:#FFF; font-size:16px; font-weight:700; text-decoration:none;
+    box-shadow:0 10px 22px rgba(244,98,58,.30);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .cta:hover, .cta:focus-visible{
+    transform:translateY(-2px); box-shadow:0 14px 28px rgba(244,98,58,.38); outline:none;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    position:relative; z-index:2;
+    margin-top:auto; padding-top:12px;
+    border-top:1px solid rgba(30,42,50,.10);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px 18px; flex-wrap:wrap;
+  }
+  .foot-copy{ color:#5A6B72; font-size:12.5px; font-weight:500; }
+  .foot-officer{ color:#9BAAAE; font-size:12px; font-weight:500; }
+  .foot-links{ display:flex; align-items:center; gap:12px; }
+  .foot-links button{
+    appearance:none; background:none; border:none; cursor:pointer;
+    font-family:inherit; font-size:12.5px; font-weight:700; color:#26343B;
+    padding:2px 0; transition:color .15s ease;
+  }
+  .foot-links button:hover, .foot-links button:focus-visible{ color:#0E9E94; outline:none; }
+  .foot-links .sep{ color:#C3CECF; font-size:12px; }
+
+  /* ===== LEGAL MODAL ===== */
+  .legal-overlay{
+    position:fixed; inset:0; z-index:50; display:none;
+    align-items:center; justify-content:center; padding:24px;
+    background:rgba(20,32,38,.42); backdrop-filter:blur(2px);
+  }
+  .legal-overlay.is-open{ display:flex; }
+  .legal-card{
+    position:relative; width:min(720px,100%); max-height:84vh;
+    display:flex; flex-direction:column;
+    background:#FBF8F1; border-radius:20px;
+    box-shadow:0 30px 70px rgba(14,30,28,.32);
+    overflow:hidden;
+  }
+  .legal-head{
+    flex:none; padding:24px 28px 16px;
+    border-bottom:1px solid rgba(30,42,50,.08);
+    background:linear-gradient(180deg,#ECFBF6,rgba(236,251,246,0));
+  }
+  .legal-head h2{ margin:0; font-family:'Sora',sans-serif; font-size:22px; font-weight:800; color:#1E2A32; }
+  .legal-head .eff{ margin:6px 0 0; font-size:12.5px; color:#7A8A8F; font-weight:500; }
+  .legal-close{
+    position:absolute; top:18px; right:18px;
+    width:34px; height:34px; border-radius:50%;
+    background:#FFFFFF; border:1px solid #E4EBE9; cursor:pointer;
+    font-size:18px; line-height:1; color:#5A6B72;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .15s ease;
+  }
+  .legal-close:hover{ background:#0E9E94; color:#FFF; border-color:#0E9E94; }
+  .legal-body{
+    flex:1; overflow-y:auto; padding:20px 28px 28px;
+    font-size:14px; line-height:1.72; color:#46555C; text-wrap:pretty;
+  }
+  .legal-body h3{ margin:20px 0 6px; font-size:15px; font-weight:700; color:#1E2A32; }
+  .legal-body h3:first-child{ margin-top:0; }
+  .legal-body p{ margin:0 0 4px; }
+  .legal-body ul{ margin:4px 0 4px; padding-left:18px; }
+  .legal-body li{ margin:2px 0; }
+  .legal-body .intro{ color:#5A6B72; }
+
+  @keyframes lab-float { 0%,100%{ transform:translateY(0) rotate(-1.2deg);} 50%{ transform:translateY(-12px) rotate(1.2deg);} }
+  @keyframes lab-bubble { 0%,100%{ transform:translateY(0); opacity:.5;} 50%{ transform:translateY(-8px); opacity:1;} }
+  @keyframes lab-blink { 0%,100%{ opacity:1;} 50%{ opacity:.18;} }
+  .nav-item{ display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .badge-soon{ font-size:11px; font-weight:700; letter-spacing:.02em; color:#F4623A; animation:lab-blink 1.2s ease-in-out infinite; }
+
+  /* ===== TABLET ===== */
+  @media (max-width:900px){
+    .nav-spacer{ display:none; }
+    .logo{ width:72px; height:72px; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width:640px){
+    .page{ padding:20px 18px 24px; overflow-y:auto; }
+    header{ flex-direction:column; gap:14px; }
+    .logo{ width:84px; height:84px; }
+    nav{ gap:8px; }
+    .tab{ padding:11px 18px; font-size:14px; }
+    .m-wave{ height:138px; }
+    .wordmark{ font-size:clamp(44px,15vw,76px); }
+    .tagline{ font-size:15px; padding:0 6px; }
+    .cta{ font-size:15px; padding:14px 24px; }
+  }
+  @media (max-width:380px){
+    .m-wave{ height:118px; }
+    .wordmark{ font-size:42px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .mascots,.bubble-1,.bubble-2,.badge-soon{ animation:none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="blob blob-tr"></div>
+  <div class="blob blob-bl"></div>
+
+  <!-- ===== TOP NAV ===== -->
+  <header>
+    <img class="logo" src="assets/logo-circle.png" alt="labbitory 로고">
+    <nav>
+      <a class="tab" href="about.html">About</a>
+      <a class="tab" href="https://teacher.labbitory.com">김도윤 선생님 소개</a>
+      <a class="tab" href="science.html">중학교 과학 학습</a>
+      <a class="tab" href="vernier.html">버니어 척척박사</a>
+      <div class="nav-item">
+        <a class="tab" href="#pasco">파스코 척척박사</a>
+        <span class="badge-soon">준비중</span>
+      </div>
+      <a class="tab" href="useful.html">쓸만하니?</a>
+    </nav>
+    <div class="nav-spacer"></div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main>
+    <div class="mascots">
+      <div class="glow"></div>
+      <div class="mascot-row">
+        <img class="m-wave" src="assets/mascot-wave.png" alt="래비토리 마스코트">
+      </div>
+      <div class="bubble bubble-1"></div>
+      <div class="bubble bubble-2"></div>
+    </div>
+
+    <h1 class="wordmark">labbitory<span class="dot">.com</span></h1>
+
+    <p class="tagline">AI로 과학 탐구를 <b>더 쉽고 즐겁게</b> — 모두를 위한 과학 실험실</p>
+
+    <div class="cta-row">
+      <a class="cta" href="vernier.html">버니어로 탐구 바로 시작하기 →</a>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span class="foot-copy">© 2026 labbitory.com. All rights reserved.</span>
+    <span class="foot-officer">개인정보책임자: 김도윤 교사 (경희여자중학교) | 문의: 02-6072-1885</span>
+    <div class="foot-links">
+      <button type="button" onclick="openLegal('terms')">이용약관</button>
+      <span class="sep">|</span>
+      <button type="button" onclick="openLegal('privacy')">개인정보처리방침</button>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== TERMS MODAL ===== -->
+<div class="legal-overlay" id="legal-terms" onclick="if(event.target===this)closeLegal()">
+  <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="legal-head">
+      <h2 id="terms-title">이용약관</h2>
+      <p class="eff">시행일: 2026년 6월 27일</p>
+      <button class="legal-close" type="button" aria-label="닫기" onclick="closeLegal()">×</button>
+    </div>
+    <div class="legal-body">
+      <h3>제1조 (목적)</h3>
+      <p>이 약관은 labbitory.com(이하 "본 서비스")이 제공하는 무료 교육용 웹 애플리케이션 서비스(이하 "서비스")를 이용함에 있어 서비스 제공자와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+      <h3>제2조 (정의)</h3>
+      <p>① "서비스"란 본 웹사이트에서 제공하는 AI 기반 과학 탐구 학습 도구 및 학급 운영 도구를 말합니다.<br>② "이용자"란 본 서비스에 접속하여 이 약관에 따라 서비스를 이용하는 자를 말합니다.<br>③ "입력 정보"란 이용자가 학습 시작 시 선택적으로 입력하는 이름(별명) 및 학년 정보를 말합니다.</p>
+      <h3>제3조 (약관의 명시와 개정)</h3>
+      <p>① 본 서비스는 이 약관의 내용을 이용자가 쉽게 알 수 있도록 서비스 화면 하단(푸터)에 게시합니다.<br>② 본 서비스는 관련 법령을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.<br>③ 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 그 적용일자 7일 이전부터 공지합니다.</p>
+      <h3>제4조 (서비스의 제공)</h3>
+      <p>① 본 서비스는 중학교 과학 교육 및 학급 운영 지원을 목적으로 하는 무료 웹 애플리케이션을 제공합니다.<br>② 서비스의 이용은 무료이며, 별도의 유료 결제가 필요하지 않습니다.<br>③ 본 서비스는 교육 활동 지원을 목적으로 하며, 상업적 목적으로 운영되지 않습니다.</p>
+      <h3>제5조 (서비스의 중단)</h3>
+      <p>① 본 서비스는 시스템 점검, 교체 및 고장, 통신 두절 등의 사유가 발생한 경우 서비스 제공을 일시적으로 중단할 수 있습니다.<br>② 본 서비스는 무료로 제공되는 교육용 서비스이므로, 서비스 중단으로 인한 별도의 보상은 제공되지 않습니다.</p>
+      <h3>제6조 (서비스 이용)</h3>
+      <p>① 이용자는 학습 시작 화면에서 이름(별명)과 학년을 입력하거나, 입력 없이 서비스를 이용할 수 있습니다.<br>② 만 14세 미만의 아동은 학교 가정통신문 등을 통해 보호자(법정대리인)의 동의를 받은 후 서비스를 이용할 수 있습니다.<br>③ 본 서비스는 별도의 회원가입 절차 없이 브라우저를 통해 이용할 수 있습니다.</p>
+      <h3>제7조 (이용자 정보의 삭제)</h3>
+      <p>① 이용자는 브라우저의 사이트 데이터 삭제 기능 또는 브라우저 설정을 통해 저장된 학습 정보(이름, 학년, 학습 진행 및 결과)를 언제든지 삭제할 수 있습니다.<br>② 이용자 또는 법정대리인이 정보 삭제를 요청하는 경우, 개발 교사에게 구두나 서면으로 요청하면 지체 없이 안내하겠습니다.</p>
+      <h3>제8조 (이용자의 의무)</h3>
+      <p>이용자는 다음 행위를 하여서는 안 됩니다.</p>
+      <ul>
+        <li>허위 내용의 등록</li>
+        <li>타인의 정보 도용</li>
+        <li>서비스에 게시된 정보의 무단 변경</li>
+        <li>서비스의 운영을 방해하는 행위</li>
+        <li>타인의 명예를 손상시키거나 불이익을 주는 행위</li>
+        <li>공서양속에 반하는 정보를 게시하는 행위</li>
+      </ul>
+      <h3>제9조 (저작권)</h3>
+      <p>① 본 서비스가 작성한 저작물에 대한 저작권은 서비스 제공자에게 귀속합니다.<br>② 이용자는 서비스를 이용하여 얻은 정보를 서비스 제공자의 사전 승낙 없이 복제, 송신, 출판, 배포하여서는 안 됩니다.</p>
+      <h3>제10조 (면책조항)</h3>
+      <p>① 본 서비스는 무료로 제공되는 교육용 서비스로서, 서비스 이용 중 발생하는 기술적 문제나 오류에 대해 제한적 책임을 집니다.<br>② 본 서비스가 연결하는 외부 웹사이트의 내용에 대해서는 해당 사이트 제공자가 책임을 집니다.</p>
+      <h3>제11조 (분쟁해결)</h3>
+      <p>본 서비스와 이용자 간에 발생한 분쟁에 관하여는 대한민국 법을 적용하며, 소송이 제기되는 경우 서비스 제공자의 소재지를 관할하는 법원을 관할법원으로 합니다.</p>
+      <h3>부칙</h3>
+      <p>이 약관은 2026년 6월 27일부터 시행됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRIVACY MODAL ===== -->
+<div class="legal-overlay" id="legal-privacy" onclick="if(event.target===this)closeLegal()">
+  <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="legal-head">
+      <h2 id="privacy-title">개인정보처리방침</h2>
+      <p class="eff">시행일: 2026년 6월 27일</p>
+      <button class="legal-close" type="button" aria-label="닫기" onclick="closeLegal()">×</button>
+    </div>
+    <div class="legal-body">
+      <p class="intro">labbitory.com(이하 "본 서비스")은(는) 개인정보 보호법 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.</p>
+      <h3>제1조 (개인정보의 처리 목적)</h3>
+      <p>본 서비스는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
+      <ul>
+        <li>학습 활동 지원: 학습자 식별(별명), 학년별 맞춤 학습 경험 제공</li>
+        <li>서비스 제공: 과학 탐구 학습 진행, 선택 결과 및 학습 이력 저장, 결과 리포트 생성</li>
+      </ul>
+      <h3>제2조 (개인정보의 처리 및 보유기간)</h3>
+      <p>① 본 서비스는 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 동의받은 보유·이용기간 내에서 개인정보를 처리·보유합니다.<br>② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.</p>
+      <ul>
+        <li>보유 기간: 해당 학년도 종료 시(익년 2월 말) 또는 학생의 졸업/진급 시까지</li>
+        <li>보유 장소: 이용자의 웹 브라우저 localStorage(서버로 전송되지 않음)</li>
+        <li>파기 시점: 보유 기간 종료 후 지체 없이(5일 이내) 파기, 또는 이용자가 브라우저 데이터를 삭제한 즉시 파기</li>
+      </ul>
+      <h3>제3조 (처리하는 개인정보 항목)</h3>
+      <p>본 서비스는 학습 지원을 위해 필요한 최소한의 개인정보만을 수집합니다.</p>
+      <ul>
+        <li>수집 항목: 이름(별명, 선택 입력), 학년, 학습 진행 상태, 선택 결과</li>
+        <li>수집 방법: 학습 시작 화면 입력 및 서비스 이용 과정에서 브라우저 localStorage에 저장</li>
+        <li>수집하지 않는 항목: 주민등록번호, 주소, 전화번호, 이메일, 비밀번호 등 불필요한 민감 정보</li>
+      </ul>
+      <h3>제4조 (만 14세 미만 아동의 개인정보 처리에 관한 사항)</h3>
+      <p>① 본 서비스는 만 14세 미만 아동의 개인정보를 처리하기 위하여 학기 초 학교 가정통신문(개인정보 수집·이용 동의서) 등을 통하여 법정대리인의 동의를 받습니다.<br>② 법정대리인이 동의하지 않는 경우, 해당 아동은 서비스 이용이 제한될 수 있습니다.</p>
+      <h3>제5조 (개인정보의 파기 절차 및 방법)</h3>
+      <p>① 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.<br>② 파기 방법: 브라우저 localStorage에 저장된 개인정보는 이용자가 브라우저의 사이트 데이터 삭제 기능을 통해 즉시 삭제할 수 있으며, 서버에 별도로 저장하지 않습니다.</p>
+      <h3>제6조 (개인정보의 안전성 확보조치)</h3>
+      <p>본 서비스는 개인정보 보호법 제29조에 따라 다음과 같이 안전성 확보에 필요한 기술적/관리적 조치를 하고 있습니다.</p>
+      <ul>
+        <li>최소 수집: 학습에 필요한 최소한의 정보만 브라우저에 저장하며, 서버로 전송하지 않습니다.</li>
+        <li>보안 통신: Cloudflare 클라우드 플랫폼을 기반으로 운영되며, 전 구간 보안 통신(HTTPS)을 사용합니다.</li>
+        <li>개인정보 취급 직원의 최소화: 개인정보를 처리하는 담당자를 개발 교사 1인으로 지정하여 접근 권한을 관리합니다.</li>
+      </ul>
+      <h3>제7조 (정보주체와 법정대리인의 권리·의무 및 행사방법)</h3>
+      <p>① 정보주체(학생) 및 법정대리인은 언제든지 개인정보 열람·정정·삭제·처리정지 요구 등의 권리를 행사할 수 있습니다.<br>② 권리 행사는 브라우저의 사이트 데이터 삭제를 통하여 즉시 가능하며, 또는 개발 교사에게 구두나 서면으로 요청하면 지체 없이 조치하겠습니다.</p>
+      <h3>제8조 (개인정보 보호책임자)</h3>
+      <p>본 서비스는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+      <ul>
+        <li>성명: 김도윤 (개발자)</li>
+        <li>소속: 경희여자중학교</li>
+        <li>직위: 교사</li>
+        <li>연락처: 02-6072-1885</li>
+      </ul>
+      <h3>제9조 (개인정보 처리방침 변경)</h3>
+      <p>이 개인정보 처리방침은 2026년 6월 27일부터 적용됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openLegal(which){
+    var id = which === 'privacy' ? 'legal-privacy' : 'legal-terms';
+    document.getElementById(id).classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLegal(){
+    document.querySelectorAll('.legal-overlay.is-open').forEach(function(el){ el.classList.remove('is-open'); });
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLegal(); });
+</script>
+</body>
+</html>

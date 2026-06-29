@@ -1,0 +1,12 @@
+# Cloudflare Wrangler local cache
+.wrangler/
+
+# Node
+node_modules/
+
+# Local Claude settings (machine-specific)
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
