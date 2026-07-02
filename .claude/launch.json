@@ -4,8 +4,8 @@
     {
       "name": "pasco-motion",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "apps/pasco-motion", "run", "dev", "--", "--port", "5219", "--strictPort"],
-      "port": 5219
+      "runtimeArgs": ["--prefix", "apps/pasco-motion", "run", "dev", "--", "--port", "5321", "--strictPort"],
+      "port": 5321
     },
     {
       "name": "Wrangler Pages (Cloudflare)",
@@ -24,6 +24,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "-l", "3000"],
       "port": 3000
+    },
+    {
+      "name": "pasco02-cooling (로르산 냉각곡선)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/Users/sirlm/Downloads/pasco02", "-p", "8177", "-c-1"],
+      "port": 8177
     }
   ]
 }
