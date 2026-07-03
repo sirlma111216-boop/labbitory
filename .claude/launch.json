@@ -4,8 +4,8 @@
     {
       "name": "pasco-motion",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "apps/pasco-motion", "run", "dev", "--", "--port", "5321", "--strictPort"],
-      "port": 5321
+      "runtimeArgs": ["--prefix", "apps/pasco-motion", "run", "dev"],
+      "autoPort": true
     },
     {
       "name": "Wrangler Pages (Cloudflare)",
