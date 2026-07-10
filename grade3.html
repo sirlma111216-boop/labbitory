@@ -10,6 +10,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
+<style>
+  /* ===== 단원 선택 모달 ===== */
+  .unit-modal{
+    position:fixed; inset:0; z-index:50; display:none;
+    align-items:center; justify-content:center; padding:24px;
+    background:rgba(20,32,38,.42); backdrop-filter:blur(2px);
+  }
+  .unit-modal.is-open{ display:flex; }
+  .unit-modal-card{
+    position:relative; width:min(440px,100%);
+    background:#FBF8F1; border-radius:22px; padding:30px 28px 26px;
+    box-shadow:0 30px 70px rgba(14,30,28,.32);
+  }
+  .unit-modal-close{
+    position:absolute; top:16px; right:16px;
+    width:34px; height:34px; border-radius:50%;
+    background:#FFFFFF; border:1px solid #E4EBE9; cursor:pointer;
+    font-size:18px; line-height:1; color:#5A6B72;
+    display:flex; align-items:center; justify-content:center; transition:all .15s ease;
+  }
+  .unit-modal-close:hover{ background:#0E9E94; color:#FFF; border-color:#0E9E94; }
+  .unit-modal-eyebrow{ margin:0 0 6px; font-size:13px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:#0E9E94; }
+  .unit-modal-title{ margin:0 0 20px; font-family:'Sora',sans-serif; font-weight:800;
+    font-size:22px; letter-spacing:-.02em; color:#1E2A32; }
+  .unit-modal-choices{ display:flex; flex-direction:column; gap:12px; }
+  .unit-choice{
+    display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius:16px;
+    background:#FFFFFF; border:1.5px solid #BfeAe3; color:#1E2A32; text-decoration:none;
+    box-shadow:0 4px 12px rgba(14,158,148,.10); transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .unit-choice:hover, .unit-choice:focus-visible{
+    transform:translateY(-2px); box-shadow:0 12px 24px rgba(14,158,148,.22); outline:none;
+  }
+  .unit-choice .uc-no{
+    flex:none; width:32px; height:32px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Sora',sans-serif; font-weight:700; font-size:15px; color:#FFFFFF;
+    background:linear-gradient(135deg,#2DD4BF,#0E9E94);
+  }
+  .unit-choice .uc-name{ flex:1; font-size:16px; font-weight:600; }
+  .unit-choice .uc-go{ font-size:18px; font-weight:700; color:#0E9E94; }
+  .unit.active[type="button"]{ font:inherit; text-align:left; cursor:pointer; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -52,10 +96,10 @@
           <span class="no">4</span>
           <span class="body"><span class="name">운동과 에너지</span><small class="soon">준비중</small></span>
         </div>
-        <a class="unit active" href="https://g3-5.labbitory.com">
+        <button type="button" class="unit active" style="border:none;background:#FFFFFF;font:inherit;text-align:left;cursor:pointer;width:100%;" onclick="openUnit5()">
           <span class="no">5</span>
           <span class="body"><span class="name">자극과 반응</span><small style="font-size:12px;font-weight:700;color:#0E9E94;">학습하기 →</small></span>
-        </a>
+        </button>
         <div class="unit locked">
           <span class="no">6</span>
           <span class="body"><span class="name">생식과 유전</span><small class="soon">준비중</small></span>
@@ -71,5 +115,38 @@
     </div>
   </main>
 </div>
+
+<!-- ===== 5단원 주제 선택 모달 ===== -->
+<div class="unit-modal" id="unit5-modal" onclick="if(event.target===this)closeUnit5()">
+  <div class="unit-modal-card" role="dialog" aria-modal="true" aria-labelledby="unit5-title">
+    <button class="unit-modal-close" type="button" aria-label="닫기" onclick="closeUnit5()">×</button>
+    <p class="unit-modal-eyebrow">3학년 · 5단원 자극과 반응</p>
+    <h2 id="unit5-title" class="unit-modal-title">어떤 주제를 학습할까요?</h2>
+    <div class="unit-modal-choices">
+      <a class="unit-choice" href="https://g3-5.labbitory.com">
+        <span class="uc-no">1</span>
+        <span class="uc-name">감각과 신경계</span>
+        <span class="uc-go">→</span>
+      </a>
+      <a class="unit-choice" href="https://horm.labbitory.com">
+        <span class="uc-no">2</span>
+        <span class="uc-name">호르몬</span>
+        <span class="uc-go">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openUnit5(){
+    document.getElementById('unit5-modal').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeUnit5(){
+    document.getElementById('unit5-modal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeUnit5(); });
+</script>
 </body>
 </html>
