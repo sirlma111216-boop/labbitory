@@ -52,16 +52,16 @@
   .logo{ flex:none; width:96px; height:96px; border-radius:50%;
     filter:drop-shadow(0 6px 16px rgba(14,158,148,.22)); }
   nav{
-    flex:1; display:flex; align-items:flex-start; gap:12px;
+    flex:1; display:flex; align-items:center; gap:10px;
     flex-wrap:wrap; justify-content:center;
   }
   .nav-spacer{ flex:none; width:96px; }
   .tab{
     display:inline-flex; align-items:center;
-    padding:14px 26px; border-radius:999px;
+    padding:12px 20px; border-radius:999px;
     background:#FFFFFF; border:1.5px solid #E4EBE9;
-    color:#26343B; font-size:17px; font-weight:600;
-    text-decoration:none; white-space:nowrap;
+    color:#26343B; font-size:15.5px; font-weight:600;
+    font-family:inherit; text-decoration:none; white-space:nowrap;
     box-shadow:0 2px 5px rgba(30,42,50,.05);
     transition:all .18s ease;
   }
@@ -70,6 +70,31 @@
     transform:translateY(-2px); box-shadow:0 10px 22px rgba(14,158,148,.30);
     outline:none;
   }
+
+  /* ===== dropdown (척척박사) ===== */
+  .tab-group{ position:relative; display:inline-flex; }
+  .tab-trigger{ appearance:none; cursor:pointer; gap:7px; }
+  .tab-trigger .caret{ font-size:11px; transition:transform .18s ease; }
+  .tab-group:hover .caret, .tab-group:focus-within .caret{ transform:rotate(180deg); }
+  .dropdown{
+    position:absolute; top:calc(100% + 8px); left:50%;
+    transform:translateX(-50%) translateY(-6px);
+    display:flex; flex-direction:column; gap:4px; min-width:210px; padding:8px;
+    background:#FFFFFF; border:1.5px solid #E4EBE9; border-radius:16px;
+    box-shadow:0 16px 34px rgba(14,158,148,.18);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease; z-index:5;
+  }
+  .tab-group:hover .dropdown, .tab-group:focus-within .dropdown{
+    opacity:1; visibility:visible; pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+  }
+  .dropdown a{
+    padding:11px 14px; border-radius:11px; text-decoration:none;
+    color:#26343B; font-size:15px; font-weight:600; white-space:nowrap;
+    transition:background .15s ease, color .15s ease;
+  }
+  .dropdown a:hover, .dropdown a:focus-visible{ background:#ECFBF6; color:#0E9E94; outline:none; }
 
   /* ===== HERO ===== */
   main{
@@ -191,9 +216,13 @@
   @keyframes lab-float { 0%,100%{ transform:translateY(0) rotate(-1.2deg);} 50%{ transform:translateY(-12px) rotate(1.2deg);} }
   @keyframes lab-bubble { 0%,100%{ transform:translateY(0); opacity:.5;} 50%{ transform:translateY(-8px); opacity:1;} }
 
+  /* Free up the right-hand spacer earlier so the single-row nav fits on laptops. */
+  @media (max-width:1180px){
+    .nav-spacer{ display:none; }
+  }
+
   /* ===== TABLET ===== */
   @media (max-width:900px){
-    .nav-spacer{ display:none; }
     .logo{ width:72px; height:72px; }
   }
 
@@ -230,8 +259,13 @@
       <a class="tab" href="about.html">About</a>
       <a class="tab" href="https://teacher.labbitory.com">김도윤 선생님 소개</a>
       <a class="tab" href="science.html">중학교 과학 학습</a>
-      <a class="tab" href="vernier.html">버니어 척척박사</a>
-      <a class="tab" href="/pasco">파스코 척척박사</a>
+      <div class="tab-group">
+        <button type="button" class="tab tab-trigger" aria-haspopup="true">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
+        <div class="dropdown" role="menu">
+          <a role="menuitem" href="vernier.html">버니어 척척박사</a>
+          <a role="menuitem" href="/pasco">파스코 척척박사</a>
+        </div>
+      </div>
       <a class="tab" href="useful.html">쓸만하니?</a>
       <a class="tab" href="lecture.html">강의안</a>
     </nav>
