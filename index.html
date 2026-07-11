@@ -75,7 +75,7 @@
   .tab-group{ position:relative; display:inline-flex; }
   .tab-trigger{ appearance:none; cursor:pointer; gap:7px; }
   .tab-trigger .caret{ font-size:11px; transition:transform .18s ease; }
-  .tab-group:hover .caret, .tab-group:focus-within .caret{ transform:rotate(180deg); }
+  .tab-group.open .caret, .tab-group:focus-within .caret{ transform:rotate(180deg); }
   .dropdown{
     position:absolute; top:calc(100% + 8px); left:50%;
     transform:translateX(-50%) translateY(-6px);
@@ -85,7 +85,7 @@
     opacity:0; visibility:hidden; pointer-events:none;
     transition:opacity .18s ease, transform .18s ease; z-index:5;
   }
-  .tab-group:hover .dropdown, .tab-group:focus-within .dropdown{
+  .tab-group.open .dropdown, .tab-group:focus-within .dropdown{
     opacity:1; visibility:visible; pointer-events:auto;
     transform:translateX(-50%) translateY(0);
   }
@@ -286,20 +286,16 @@
         <button type="button" class="tab tab-trigger" aria-haspopup="true">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
         <div class="dropdown" role="menu">
           <a role="menuitem" href="vernier.html">버니어 척척박사</a>
-          <span class="dd-disabled">파스코 척척박사 <span class="soon-note">준비중</span></span>
+          <a role="menuitem" href="/pasco">파스코 척척박사</a>
         </div>
       </div>
       <a class="tab" href="useful.html">쓸만하니?</a>
       <div class="tab-group">
         <button type="button" class="tab tab-trigger" aria-haspopup="true">강의안 <span class="caret" aria-hidden="true">▾</span></button>
         <div class="dropdown" role="menu">
-          <span class="dd-label">학생</span>
-          <span class="dd-disabled">준비중</span>
-          <span class="dd-label">교사</span>
-          <span class="dd-disabled">캔바 코드 <span class="soon-note">준비중</span></span>
-          <a role="menuitem" href="https://enlovable.labbitory.com">러버블</a>
-          <span class="dd-label">대학교/대학원</span>
-          <a role="menuitem" href="https://digitaledu.labbitory.com">디지털교육</a>
+          <span class="dd-disabled">학생 <span class="soon-note">준비중</span></span>
+          <a role="menuitem" href="lecture-teacher.html">교사</a>
+          <a role="menuitem" href="lecture-univ.html">대학교/대학원</a>
         </div>
       </div>
     </nav>
@@ -451,6 +447,31 @@
     document.body.style.overflow = '';
   }
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLegal(); });
+
+  // Nav dropdowns: open on hover, but stay open with a close delay so a small
+  // pointer excursion off the menu doesn't dismiss it. Also click/keyboard aware.
+  (function(){
+    var CLOSE_DELAY = 550;
+    document.querySelectorAll('.tab-group').forEach(function(g){
+      var timer, trig = g.querySelector('.tab-trigger');
+      function open(){ clearTimeout(timer); g.classList.add('open'); }
+      function scheduleClose(){ clearTimeout(timer); timer = setTimeout(function(){ g.classList.remove('open'); }, CLOSE_DELAY); }
+      g.addEventListener('mouseenter', open);
+      g.addEventListener('mouseleave', scheduleClose);
+      trig.addEventListener('click', function(e){
+        e.preventDefault();
+        if (g.classList.contains('open')) { g.classList.remove('open'); trig.blur(); }
+        else open();
+      });
+      trig.addEventListener('focus', open);
+      g.addEventListener('focusout', function(e){ if (!g.contains(e.relatedTarget)) scheduleClose(); });
+    });
+    document.addEventListener('click', function(e){
+      if (!e.target.closest('.tab-group')) {
+        document.querySelectorAll('.tab-group.open').forEach(function(g){ g.classList.remove('open'); });
+      }
+    });
+  })();
 </script>
 </body>
 </html>
