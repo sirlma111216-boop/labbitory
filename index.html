@@ -102,7 +102,15 @@
   .dropdown .dd-label:first-child{ padding-top:2px; }
   .dropdown .dd-disabled{ display:flex; align-items:center; gap:8px;
     padding:11px 14px; border-radius:11px; font-size:15px; font-weight:600; color:#9AA7AC; }
+  /* Transparent bridge over the 8px gap so the pointer never leaves :hover. */
+  .dropdown::before{ content:""; position:absolute; left:0; right:0; top:-10px; height:10px; }
   .soon-note{ font-size:11px; font-weight:700; color:#F4623A; }
+
+  /* 준비중(비활성) 상단 탭 */
+  .tab-soon, .tab-soon:hover, .tab-soon:focus-visible{
+    background:rgba(255,255,255,.55); border:1.5px dashed #D3DEDB; color:#9AA7AC;
+    box-shadow:none; transform:none; cursor:default; gap:7px;
+  }
 
   /* ===== HERO ===== */
   main{
@@ -273,11 +281,12 @@
           <a role="menuitem" href="grade3.html">3학년 <em>8개 단원</em></a>
         </div>
       </div>
+      <span class="tab tab-soon">통합과학 학습 <span class="soon-note">준비중</span></span>
       <div class="tab-group">
         <button type="button" class="tab tab-trigger" aria-haspopup="true">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
         <div class="dropdown" role="menu">
           <a role="menuitem" href="vernier.html">버니어 척척박사</a>
-          <a role="menuitem" href="/pasco">파스코 척척박사</a>
+          <span class="dd-disabled">파스코 척척박사 <span class="soon-note">준비중</span></span>
         </div>
       </div>
       <a class="tab" href="useful.html">쓸만하니?</a>
