@@ -71,42 +71,54 @@
     outline:none;
   }
 
-  /* ===== dropdown (척척박사) ===== */
-  .tab-group{ position:relative; display:inline-flex; }
-  .tab-trigger{ appearance:none; cursor:pointer; gap:7px; }
-  .tab-trigger .caret{ font-size:11px; transition:transform .18s ease; }
-  .tab-group.open .caret, .tab-group:focus-within .caret{ transform:rotate(180deg); }
-  .dropdown{
-    position:absolute; top:calc(100% + 8px); left:50%;
-    transform:translateX(-50%) translateY(-6px);
-    display:flex; flex-direction:column; gap:2px; min-width:220px; padding:8px;
-    background:#FFFFFF; border:1.5px solid #E4EBE9; border-radius:16px;
-    box-shadow:0 16px 34px rgba(14,158,148,.18);
-    opacity:0; visibility:hidden; pointer-events:none;
-    transition:opacity .18s ease, transform .18s ease; z-index:5;
+  /* ===== nav menu button (opens a modal) ===== */
+  button.tab{ appearance:none; cursor:pointer; }
+  .tab .caret{ font-size:11px; margin-left:4px; color:#8A9AA0; }
+  .tab:hover .caret, .tab:focus-visible .caret{ color:#FFFFFF; }
+
+  /* ===== nav choice modal ===== */
+  .menu-modal{
+    position:fixed; inset:0; z-index:50; display:none;
+    align-items:center; justify-content:center; padding:24px;
+    background:rgba(20,32,38,.42); backdrop-filter:blur(2px);
   }
-  .tab-group.open .dropdown, .tab-group:focus-within .dropdown{
-    opacity:1; visibility:visible; pointer-events:auto;
-    transform:translateX(-50%) translateY(0);
+  .menu-modal.is-open{ display:flex; }
+  .menu-modal-card{
+    position:relative; width:min(460px,100%);
+    background:#FBF8F1; border-radius:22px; padding:30px 28px 26px;
+    box-shadow:0 30px 70px rgba(14,30,28,.32); animation:menu-pop .18s ease;
   }
-  .dropdown a{
-    display:block; padding:13px 16px; border-radius:11px; text-decoration:none;
-    color:#26343B; font-size:15px; font-weight:600; white-space:nowrap;
-    transition:background .15s ease, color .15s ease;
+  @keyframes menu-pop{ from{ transform:translateY(8px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
+  .menu-modal-close{
+    position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%;
+    background:#FFFFFF; border:1px solid #E4EBE9; cursor:pointer;
+    font-size:18px; line-height:1; color:#5A6B72;
+    display:flex; align-items:center; justify-content:center; transition:all .15s ease;
   }
-  .dropdown a:hover, .dropdown a:focus-visible{ background:#ECFBF6; color:#0E9E94; outline:none; }
-  .dropdown a em{ font-style:normal; font-weight:600; font-size:12.5px; color:#9AA7AC; margin-left:8px; }
-  .dropdown a:hover em, .dropdown a:focus-visible em{ color:#3FB8A6; }
-  .dropdown .dd-label{ padding:9px 14px 3px; font-size:11.5px; font-weight:700;
-    letter-spacing:.05em; color:#0E9E94; text-transform:uppercase; }
-  .dropdown .dd-label:first-child{ padding-top:2px; }
-  .dropdown .dd-disabled{ display:flex; align-items:center; gap:8px;
-    padding:13px 16px; border-radius:11px; font-size:15px; font-weight:600; color:#9AA7AC; }
-  /* Invisible buffer around the menu: a pointer stray of up to ~14px still
-     counts as "inside", so the dropdown doesn't vanish. Sits above the page but
-     below the menu items (items get z-index:1) so item clicks still land. */
-  .dropdown > *{ position:relative; z-index:1; }
-  .dropdown::before{ content:""; position:absolute; top:-8px; left:-14px; right:-14px; bottom:-16px; z-index:0; }
+  .menu-modal-close:hover{ background:#0E9E94; color:#FFF; border-color:#0E9E94; }
+  .menu-modal-eyebrow{ margin:0 0 6px; font-size:13px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:#0E9E94; }
+  .menu-modal-title{ margin:0 0 20px; font-family:'Sora',sans-serif; font-weight:800;
+    font-size:23px; letter-spacing:-.02em; color:#1E2A32; }
+  .menu-modal-list{ display:flex; flex-direction:column; gap:12px; }
+  .menu-choice{
+    display:flex; align-items:center; gap:12px; padding:17px 20px; border-radius:16px;
+    background:#FFFFFF; border:1.5px solid #BfeAe3; color:#1E2A32; text-decoration:none;
+    box-shadow:0 4px 12px rgba(14,158,148,.10);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .menu-choice:hover, .menu-choice:focus-visible{
+    transform:translateY(-2px); box-shadow:0 12px 24px rgba(14,158,148,.22); outline:none;
+  }
+  .menu-choice .mc-name{ font-size:16.5px; font-weight:700; }
+  .menu-choice .mc-note{ font-size:13px; font-weight:600; color:#9AA7AC; }
+  .menu-choice .mc-go{ margin-left:auto; font-size:19px; font-weight:700; color:#0E9E94; }
+  .menu-choice.soon{
+    background:rgba(255,255,255,.55); border:1.5px dashed #D3DEDB;
+    box-shadow:none; cursor:default;
+  }
+  .menu-choice.soon .mc-name{ color:#9AA7AC; }
+  .menu-choice.soon .mc-note{ color:#F4623A; }
   .soon-note{ font-size:11px; font-weight:700; color:#F4623A; }
 
   /* 준비중(비활성) 상단 탭 */
@@ -276,31 +288,11 @@
     <img class="logo" src="assets/logo-circle.png" alt="labbitory 로고">
     <nav>
       <a class="tab" href="about.html">About</a>
-      <div class="tab-group">
-        <button type="button" class="tab tab-trigger" aria-haspopup="true">중학교 과학 학습 <span class="caret" aria-hidden="true">▾</span></button>
-        <div class="dropdown" role="menu">
-          <a role="menuitem" href="grade1.html">1학년 <em>7개 단원</em></a>
-          <span class="dd-disabled">2학년 <span class="soon-note">준비중</span></span>
-          <a role="menuitem" href="grade3.html">3학년 <em>8개 단원</em></a>
-        </div>
-      </div>
+      <button type="button" class="tab" aria-haspopup="dialog" onclick="openMenu('science')">중학교 과학 학습 <span class="caret" aria-hidden="true">▾</span></button>
       <span class="tab tab-soon">통합과학 학습 <span class="soon-note">준비중</span></span>
-      <div class="tab-group">
-        <button type="button" class="tab tab-trigger" aria-haspopup="true">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
-        <div class="dropdown" role="menu">
-          <a role="menuitem" href="vernier.html">버니어 척척박사</a>
-          <a role="menuitem" href="/pasco">파스코 척척박사</a>
-        </div>
-      </div>
+      <button type="button" class="tab" aria-haspopup="dialog" onclick="openMenu('chinchin')">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
       <a class="tab" href="useful.html">쓸만하니?</a>
-      <div class="tab-group">
-        <button type="button" class="tab tab-trigger" aria-haspopup="true">강의안 <span class="caret" aria-hidden="true">▾</span></button>
-        <div class="dropdown" role="menu">
-          <span class="dd-disabled">학생 <span class="soon-note">준비중</span></span>
-          <a role="menuitem" href="lecture-teacher.html">교사</a>
-          <a role="menuitem" href="lecture-univ.html">대학교/대학원</a>
-        </div>
-      </div>
+      <button type="button" class="tab" aria-haspopup="dialog" onclick="openMenu('lecture')">강의안 <span class="caret" aria-hidden="true">▾</span></button>
     </nav>
     <div class="nav-spacer"></div>
   </header>
@@ -335,6 +327,16 @@
       <button type="button" onclick="openLegal('privacy')">개인정보처리방침</button>
     </div>
   </footer>
+</div>
+
+<!-- ===== NAV CHOICE MODAL ===== -->
+<div class="menu-modal" id="menu-modal" onclick="if(event.target===this)closeMenu()">
+  <div class="menu-modal-card" role="dialog" aria-modal="true" aria-labelledby="menu-modal-title">
+    <button class="menu-modal-close" type="button" aria-label="닫기" onclick="closeMenu()">×</button>
+    <p class="menu-modal-eyebrow" id="menu-modal-eyebrow">labbitory</p>
+    <h2 class="menu-modal-title" id="menu-modal-title"></h2>
+    <div class="menu-modal-list" id="menu-modal-list"></div>
+  </div>
 </div>
 
 <!-- ===== TERMS MODAL ===== -->
@@ -449,32 +451,67 @@
     document.querySelectorAll('.legal-overlay.is-open').forEach(function(el){ el.classList.remove('is-open'); });
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLegal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeLegal(); closeMenu(); } });
 
-  // Nav dropdowns: open on hover, but stay open with a close delay so a small
-  // pointer excursion off the menu doesn't dismiss it. Also click/keyboard aware.
-  (function(){
-    var CLOSE_DELAY = 550;
-    document.querySelectorAll('.tab-group').forEach(function(g){
-      var timer, trig = g.querySelector('.tab-trigger');
-      function open(){ clearTimeout(timer); g.classList.add('open'); }
-      function scheduleClose(){ clearTimeout(timer); timer = setTimeout(function(){ g.classList.remove('open'); }, CLOSE_DELAY); }
-      g.addEventListener('mouseenter', open);
-      g.addEventListener('mouseleave', scheduleClose);
-      trig.addEventListener('click', function(e){
-        e.preventDefault();
-        if (g.classList.contains('open')) { g.classList.remove('open'); trig.blur(); }
-        else open();
-      });
-      trig.addEventListener('focus', open);
-      g.addEventListener('focusout', function(e){ if (!g.contains(e.relatedTarget)) scheduleClose(); });
-    });
-    document.addEventListener('click', function(e){
-      if (!e.target.closest('.tab-group')) {
-        document.querySelectorAll('.tab-group.open').forEach(function(g){ g.classList.remove('open'); });
+  // Nav menus: clicking a nav button opens a modal to pick an option.
+  // To add an item later, just add to the arrays below (extensible).
+  var NAV_MENUS = {
+    science: {
+      title: '중학교 과학 학습',
+      items: [
+        { name: '1학년', note: '7개 단원', href: 'grade1.html' },
+        { name: '2학년', soon: true },
+        { name: '3학년', note: '8개 단원', href: 'grade3.html' }
+      ]
+    },
+    chinchin: {
+      title: '척척박사',
+      items: [
+        { name: '버니어 척척박사', href: 'vernier.html' },
+        { name: '파스코 척척박사', href: '/pasco' }
+      ]
+    },
+    lecture: {
+      title: '강의안',
+      items: [
+        { name: '학생', soon: true },
+        { name: '교사', href: 'lecture-teacher.html' },
+        { name: '대학교/대학원', href: 'lecture-univ.html' }
+      ]
+    }
+  };
+
+  function openMenu(key){
+    var menu = NAV_MENUS[key];
+    if (!menu) return;
+    document.getElementById('menu-modal-title').textContent = menu.title;
+    var list = document.getElementById('menu-modal-list');
+    list.replaceChildren();
+    menu.items.forEach(function(it){
+      var row;
+      if (it.soon){
+        row = document.createElement('div');
+        row.className = 'menu-choice soon';
+        row.innerHTML = '<span class="mc-name"></span><span class="mc-note">준비중</span>';
+        row.querySelector('.mc-name').textContent = it.name;
+      } else {
+        row = document.createElement('a');
+        row.className = 'menu-choice';
+        row.href = it.href;
+        row.innerHTML = '<span class="mc-name"></span>' +
+          (it.note ? '<span class="mc-note"></span>' : '') + '<span class="mc-go">→</span>';
+        row.querySelector('.mc-name').textContent = it.name;
+        if (it.note) row.querySelector('.mc-note').textContent = it.note;
       }
+      list.append(row);
     });
-  })();
+    document.getElementById('menu-modal').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    document.getElementById('menu-modal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
 </script>
 </body>
 </html>
