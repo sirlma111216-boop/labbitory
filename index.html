@@ -95,6 +95,14 @@
     transition:background .15s ease, color .15s ease;
   }
   .dropdown a:hover, .dropdown a:focus-visible{ background:#ECFBF6; color:#0E9E94; outline:none; }
+  .dropdown a em{ font-style:normal; font-weight:600; font-size:12.5px; color:#9AA7AC; margin-left:8px; }
+  .dropdown a:hover em, .dropdown a:focus-visible em{ color:#3FB8A6; }
+  .dropdown .dd-label{ padding:9px 14px 3px; font-size:11.5px; font-weight:700;
+    letter-spacing:.05em; color:#0E9E94; text-transform:uppercase; }
+  .dropdown .dd-label:first-child{ padding-top:2px; }
+  .dropdown .dd-disabled{ display:flex; align-items:center; gap:8px;
+    padding:11px 14px; border-radius:11px; font-size:15px; font-weight:600; color:#9AA7AC; }
+  .soon-note{ font-size:11px; font-weight:700; color:#F4623A; }
 
   /* ===== HERO ===== */
   main{
@@ -257,7 +265,14 @@
     <img class="logo" src="assets/logo-circle.png" alt="labbitory 로고">
     <nav>
       <a class="tab" href="about.html">About</a>
-      <a class="tab" href="science.html">중학교 과학 학습</a>
+      <div class="tab-group">
+        <button type="button" class="tab tab-trigger" aria-haspopup="true">중학교 과학 학습 <span class="caret" aria-hidden="true">▾</span></button>
+        <div class="dropdown" role="menu">
+          <a role="menuitem" href="grade1.html">1학년 <em>7개 단원</em></a>
+          <span class="dd-disabled">2학년 <span class="soon-note">준비중</span></span>
+          <a role="menuitem" href="grade3.html">3학년 <em>8개 단원</em></a>
+        </div>
+      </div>
       <div class="tab-group">
         <button type="button" class="tab tab-trigger" aria-haspopup="true">척척박사 <span class="caret" aria-hidden="true">▾</span></button>
         <div class="dropdown" role="menu">
@@ -266,7 +281,18 @@
         </div>
       </div>
       <a class="tab" href="useful.html">쓸만하니?</a>
-      <a class="tab" href="lecture.html">강의안</a>
+      <div class="tab-group">
+        <button type="button" class="tab tab-trigger" aria-haspopup="true">강의안 <span class="caret" aria-hidden="true">▾</span></button>
+        <div class="dropdown" role="menu">
+          <span class="dd-label">학생</span>
+          <span class="dd-disabled">준비중</span>
+          <span class="dd-label">교사</span>
+          <span class="dd-disabled">캔바 코드 <span class="soon-note">준비중</span></span>
+          <a role="menuitem" href="https://enlovable.labbitory.com">러버블</a>
+          <span class="dd-label">대학교/대학원</span>
+          <a role="menuitem" href="https://digitaledu.labbitory.com">디지털교육</a>
+        </div>
+      </div>
     </nav>
     <div class="nav-spacer"></div>
   </header>
