@@ -79,7 +79,7 @@
   .dropdown{
     position:absolute; top:calc(100% + 8px); left:50%;
     transform:translateX(-50%) translateY(-6px);
-    display:flex; flex-direction:column; gap:4px; min-width:210px; padding:8px;
+    display:flex; flex-direction:column; gap:2px; min-width:220px; padding:8px;
     background:#FFFFFF; border:1.5px solid #E4EBE9; border-radius:16px;
     box-shadow:0 16px 34px rgba(14,158,148,.18);
     opacity:0; visibility:hidden; pointer-events:none;
@@ -90,7 +90,7 @@
     transform:translateX(-50%) translateY(0);
   }
   .dropdown a{
-    padding:11px 14px; border-radius:11px; text-decoration:none;
+    display:block; padding:13px 16px; border-radius:11px; text-decoration:none;
     color:#26343B; font-size:15px; font-weight:600; white-space:nowrap;
     transition:background .15s ease, color .15s ease;
   }
@@ -101,9 +101,12 @@
     letter-spacing:.05em; color:#0E9E94; text-transform:uppercase; }
   .dropdown .dd-label:first-child{ padding-top:2px; }
   .dropdown .dd-disabled{ display:flex; align-items:center; gap:8px;
-    padding:11px 14px; border-radius:11px; font-size:15px; font-weight:600; color:#9AA7AC; }
-  /* Transparent bridge over the 8px gap so the pointer never leaves :hover. */
-  .dropdown::before{ content:""; position:absolute; left:0; right:0; top:-10px; height:10px; }
+    padding:13px 16px; border-radius:11px; font-size:15px; font-weight:600; color:#9AA7AC; }
+  /* Invisible buffer around the menu: a pointer stray of up to ~14px still
+     counts as "inside", so the dropdown doesn't vanish. Sits above the page but
+     below the menu items (items get z-index:1) so item clicks still land. */
+  .dropdown > *{ position:relative; z-index:1; }
+  .dropdown::before{ content:""; position:absolute; top:-8px; left:-14px; right:-14px; bottom:-16px; z-index:0; }
   .soon-note{ font-size:11px; font-weight:700; color:#F4623A; }
 
   /* 준비중(비활성) 상단 탭 */
