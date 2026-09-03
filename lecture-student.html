@@ -10,6 +10,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
+<style>
+  /* ===== 역할 선택 모달 (신뢰마을 등 교사용/학생용이 나뉜 앱) ===== */
+  .role-modal{
+    position:fixed; inset:0; z-index:50; display:none;
+    align-items:center; justify-content:center; padding:24px;
+    background:rgba(20,32,38,.42); backdrop-filter:blur(2px);
+  }
+  .role-modal.is-open{ display:flex; }
+  .role-modal-card{
+    position:relative; width:min(440px,100%);
+    background:#FBF8F1; border-radius:22px; padding:30px 28px 26px;
+    box-shadow:0 30px 70px rgba(14,30,28,.32);
+  }
+  .role-modal-close{
+    position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%;
+    background:#FFFFFF; border:1px solid #E4EBE9; cursor:pointer;
+    font-size:18px; line-height:1; color:#5A6B72;
+    display:flex; align-items:center; justify-content:center; transition:all .15s ease;
+  }
+  .role-modal-close:hover{ background:#0E9E94; color:#FFF; border-color:#0E9E94; }
+  .role-modal-eyebrow{ margin:0 0 6px; font-size:13px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:#0E9E94; }
+  .role-modal-title{ margin:0 0 20px; font-family:'Sora',sans-serif; font-weight:800;
+    font-size:22px; letter-spacing:-.02em; color:#1E2A32; }
+  .role-modal-list{ display:flex; flex-direction:column; gap:12px; }
+  .role-choice{
+    display:flex; align-items:center; gap:12px; padding:17px 20px; border-radius:16px;
+    background:#FFFFFF; border:1.5px solid #BfeAe3; color:#1E2A32; text-decoration:none;
+    box-shadow:0 4px 12px rgba(14,158,148,.10);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .role-choice:hover, .role-choice:focus-visible{
+    transform:translateY(-2px); box-shadow:0 12px 24px rgba(14,158,148,.22); outline:none;
+  }
+  .role-choice .rc-name{ font-size:16.5px; font-weight:700; }
+  .role-choice .rc-go{ margin-left:auto; font-size:19px; font-weight:700; color:#0E9E94; }
+  button.menu-card{ appearance:none; font:inherit; cursor:pointer; width:100%; text-align:left; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -50,9 +88,56 @@
         <span class="arrow">→</span>
       </a>
 
+      <!-- 신뢰마을 -->
+      <button type="button" class="menu-card active" onclick="openRoleModal()">
+        <span class="menu-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"></path>
+            <path d="M5 21V10l7-6 7 6v11"></path>
+            <path d="M9 21v-6h6v6"></path>
+          </svg>
+        </span>
+        <span class="menu-body">
+          <span class="menu-title">신뢰마을</span>
+          <span class="menu-sub">청렴 학습 콘텐츠 →</span>
+        </span>
+        <span class="arrow">→</span>
+      </button>
+
       <!-- 새 강의안은 아래에 .menu-card 를 추가하면 됩니다. -->
     </div>
   </main>
 </div>
+
+<!-- ===== 신뢰마을 역할 선택 모달 ===== -->
+<div class="role-modal" id="role-modal" onclick="if(event.target===this)closeRoleModal()">
+  <div class="role-modal-card" role="dialog" aria-modal="true" aria-labelledby="role-modal-title">
+    <button class="role-modal-close" type="button" aria-label="닫기" onclick="closeRoleModal()">×</button>
+    <p class="role-modal-eyebrow">신뢰마을 · 청렴 학습</p>
+    <h2 class="role-modal-title" id="role-modal-title">누구로 들어갈까요?</h2>
+    <div class="role-modal-list">
+      <a class="role-choice" href="https://village.labbitory.com/host">
+        <span class="rc-name">교사용</span>
+        <span class="rc-go">→</span>
+      </a>
+      <a class="role-choice" href="https://village.labbitory.com">
+        <span class="rc-name">학생용</span>
+        <span class="rc-go">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openRoleModal(){
+    document.getElementById('role-modal').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeRoleModal(){
+    document.getElementById('role-modal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeRoleModal(); });
+</script>
 </body>
 </html>
