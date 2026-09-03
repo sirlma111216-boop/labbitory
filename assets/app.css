@@ -166,8 +166,8 @@ main{
 /* ===== menu choice grid (강의안 목록 페이지) ===== */
 /* Add more .menu-card entries in the page to extend — layout auto-flows. */
 .menu-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));
-  gap:16px; width:100%; max-width:760px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:16px; width:100%; max-width:820px;
 }
 .menu-card{
   display:flex; align-items:center; gap:16px;
