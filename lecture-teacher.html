@@ -10,6 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
+<style>
+  .exp-grid{ max-width:1100px; }
+  .exp-shot{
+    display:block; width:100%; height:auto; aspect-ratio:16 / 10; object-fit:cover; object-position:top;
+    border-radius:14px; border:1px solid #E4EBE9; background:#F2F5F4; margin-bottom:16px;
+  }
+</style>
 </head>
 <body>
 <div class="page">
@@ -25,88 +32,104 @@
   </header>
 
   <main>
-    <div class="heading" style="margin-bottom:clamp(20px,4vh,40px);">
+    <div class="heading" style="margin-bottom:clamp(20px,4vh,36px);">
       <p class="eyebrow">교사와 함께</p>
       <h1 class="title">선생님과 함께하는 연수</h1>
       <p class="subtitle">마음에 드는 내용을 눌러 바로 시작해 보세요.</p>
     </div>
 
-    <div class="menu-grid">
-      <!-- 캔바 코드 -->
-      <div class="menu-card locked">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 18l6-6-6-6"></path><path d="M8 6l-6 6 6 6"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">캔바 코드</span>
-          <small class="soon">준비중</small>
-        </span>
-      </div>
+    <div class="exp-grid">
+      <!-- 캔바 코드(준비중) — 화면에서만 숨김, 나중에 다시 노출할 수 있습니다.
+      <div class="menu-card locked">… 캔바 코드 · 준비중 …</div>
+      -->
 
-      <!-- 러버블 -->
-      <a class="menu-card active" href="https://enlovable.labbitory.com">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s-6.5-4.35-9-8.5C1.5 9.5 3 6 6.5 6c2 0 3 1 3.5 2 .5-1 1.5-2 3.5-2C17 6 18.5 9.5 21 12.5 18.5 16.65 12 21 12 21Z"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">내 수업에 코딩 한 스푼(러버블)</span>
-          <span class="menu-sub">바로가기 →</span>
-        </span>
-        <span class="arrow">→</span>
+      <a class="exp-card" href="https://enlovable.labbitory.com">
+        <img class="exp-shot" src="assets/shots/enlovable.webp" alt="내 수업에 코딩 한 스푼 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">AI디지털수업평가전문가연수 · 6시간 실습</div>
+        <h2 class="exp-title">내 수업에 코딩 한 스푼(러버블)</h2>
+        <p class="exp-desc">내 수업의 문제를 정의하고 PRD를 써서, 생성형 AI와 함께 실제로 작동하는 수업 도구를 만들어 보는 바이브코딩 실습형 연수 포털이에요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 연수</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
       </a>
 
-      <!-- 생기부 특기사항 젬(GEM) 만들기 -->
-      <a class="menu-card active" href="https://gemmaker.labbitory.com">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 3h12l4 6-10 12L2 9Z"></path>
-            <path d="M2 9h20"></path>
-            <path d="M9 3 12 9 15 3"></path>
-            <path d="M12 9 8 21"></path>
-            <path d="M12 9l4 12"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">생기부 특기사항 젬(GEM) 만들기</span>
-          <span class="menu-sub">바로가기 →</span>
-        </span>
-        <span class="arrow">→</span>
+      <a class="exp-card" href="https://2022back.labbitory.com">
+        <img class="exp-shot" src="assets/shots/2022back.webp" alt="거꾸로 설계 연수실 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">2022 개정 교육과정 · 3차시 150분</div>
+        <h2 class="exp-title">거꾸로 설계 연수실</h2>
+        <p class="exp-desc">성취기준 → 이해 → 질문 → 평가 → 수업 → 피드백 순서로 따라가며, 연수가 끝나면 A4 한 장짜리 단원 수업·평가 설계안이 완성돼요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 연수</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
       </a>
 
-      <!-- 거꾸로 설계 연수실 -->
-      <a class="menu-card active" href="https://2022back.labbitory.com">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 12a9 9 0 1 0 3-6.7"></path>
-            <path d="M3 4v4h4"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">거꾸로 설계 연수실</span>
-          <span class="menu-sub">바로가기 →</span>
-        </span>
-        <span class="arrow">→</span>
+      <a class="exp-card" href="https://gemmaker.labbitory.com">
+        <img class="exp-shot" src="assets/shots/gemmaker.webp" alt="생기부 항목별 젬 만들기 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">2026학년도 기재요령 · 실습 자료</div>
+        <h2 class="exp-title">생기부 특기사항 젬(GEM) 만들기</h2>
+        <p class="exp-desc">생기부 항목마다 Gemini 젬을 따로 만들고 공통 지식 파일을 함께 올리는 실습이에요. 관찰 기록을 다듬는 윤문 보조 도구로 쓰도록 기재요령 규정부터 짚어요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 연수</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
       </a>
 
-      <!-- 서울 고교 지도 만들기 -->
-      <a class="menu-card active" href="https://highmap.labbitory.com">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 20 3 17V4l6 3m0 13 6-3m-6 3V7m6 10 6 3V7l-6-3m0 13V4m0 0L9 7"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">서울 고교 지도 만들기</span>
-          <span class="menu-sub">바로가기 →</span>
-        </span>
-        <span class="arrow">→</span>
+      <a class="exp-card" href="https://highmap.labbitory.com">
+        <img class="exp-shot" src="assets/shots/highmap.webp" alt="서울 고교 지도 만들기 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">진로진학상담교사 연수 · 4단계 실습</div>
+        <h2 class="exp-title">서울 고교 지도 만들기</h2>
+        <p class="exp-desc">학교알리미 공시자료와 Google 지도를 잇는 「서울 고교 지도」 웹앱을 Google AI 스튜디오로 만들고, Netlify에 배포하기까지 단계별로 따라가요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 연수</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
       </a>
 
-      <!-- 새 강의안은 아래에 .menu-card 를 추가하면 됩니다. -->
+      <a class="exp-card" href="https://sciedu.labbitory.com">
+        <img class="exp-shot" src="assets/shots/sciedu.webp" alt="디지털 센서 활용법 연수 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">교육실무사(과학실험) 연수</div>
+        <h2 class="exp-title">데이터 기반 탐구수업을 위한 디지털 센서 활용법</h2>
+        <p class="exp-desc">과학실험 교육실무사 안전 역량강화 연수에서 쓰는 강의 슬라이드예요. 디지털 센서로 데이터 기반 탐구수업을 준비하는 방법을 다뤄요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 연수</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card" href="https://aimsds.labbitory.com">
+        <img class="exp-shot" src="assets/shots/aimsds.webp" alt="약품안전 척척박사 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">과학실 안전 · 시약 라벨 확인</div>
+        <h2 class="exp-title">약품안전 척척박사</h2>
+        <p class="exp-desc">시약병 라벨을 찍으면 AI가 라벨을 읽고, 확인을 거친 뒤 위험·보호구·보관·혼합 금지·응급조치·폐기 안내를 쉬운 말로 정리해 줘요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">업무 도구</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card" href="https://useful02.labbitory.com/">
+        <img class="exp-shot" src="assets/shots/useful02.webp" alt="우리반 출결노트 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">학급 운영 · 출결 관리</div>
+        <h2 class="exp-title">우리반 출결노트</h2>
+        <p class="exp-desc">매일의 출결 상황을 깔끔하게 정리해 생기부 출결을 손쉽게 입력하고, 출결 서류를 내지 않은 학생에게는 바로 메시지를 보내 챙겨요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">업무 도구</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card" href="https://newday.labbitory.com">
+        <img class="exp-shot" src="assets/shots/newday.webp" alt="업무달력 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">개인 업무 일정 관리</div>
+        <h2 class="exp-title">업무달력</h2>
+        <p class="exp-desc">일정과 준비할 일을 한곳에 모으는 개인 업무달력이에요. Google 계정으로 로그인하면 PC와 휴대전화에서 같은 일정을 볼 수 있어요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">업무 도구</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
     </div>
   </main>
 </div>
