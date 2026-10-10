@@ -11,7 +11,14 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
 <style>
-  /* ===== 역할 선택 모달 (신뢰마을 등 교사용/학생용이 나뉜 앱) ===== */
+  .exp-grid{ max-width:1100px; }
+  .exp-shot{
+    display:block; width:100%; height:auto; aspect-ratio:16 / 10; object-fit:cover; object-position:top;
+    border-radius:14px; border:1px solid #E4EBE9; background:#F2F5F4; margin-bottom:16px;
+  }
+  button.exp-card{ appearance:none; font:inherit; text-align:left; cursor:pointer; width:100%; }
+
+  /* ===== 역할 선택 모달 (교사용/학생용 주소가 나뉜 앱) ===== */
   .role-modal{
     position:fixed; inset:0; z-index:50; display:none;
     align-items:center; justify-content:center; padding:24px;
@@ -30,8 +37,7 @@
     display:flex; align-items:center; justify-content:center; transition:all .15s ease;
   }
   .role-modal-close:hover{ background:#0E9E94; color:#FFF; border-color:#0E9E94; }
-  .role-modal-eyebrow{ margin:0 0 6px; font-size:13px; font-weight:700; letter-spacing:.06em;
-    text-transform:uppercase; color:#0E9E94; }
+  .role-modal-eyebrow{ margin:0 0 6px; font-size:13px; font-weight:700; letter-spacing:.06em; color:#0E9E94; }
   .role-modal-title{ margin:0 0 20px; font-family:'Sora',sans-serif; font-weight:800;
     font-size:22px; letter-spacing:-.02em; color:#1E2A32; }
   .role-modal-list{ display:flex; flex-direction:column; gap:12px; }
@@ -46,7 +52,6 @@
   }
   .role-choice .rc-name{ font-size:16.5px; font-weight:700; }
   .role-choice .rc-go{ margin-left:auto; font-size:19px; font-weight:700; color:#0E9E94; }
-  button.menu-card{ appearance:none; font:inherit; cursor:pointer; width:100%; text-align:left; }
 </style>
 </head>
 <body>
@@ -63,48 +68,72 @@
   </header>
 
   <main>
-    <div class="heading" style="margin-bottom:clamp(20px,4vh,40px);">
+    <div class="heading" style="margin-bottom:clamp(20px,4vh,36px);">
       <p class="eyebrow">학생과 함께</p>
       <h1 class="title">학생과 함께하는 수업</h1>
       <p class="subtitle">마음에 드는 내용을 눌러 바로 시작해 보세요.</p>
     </div>
 
-    <div class="menu-grid">
-      <!-- 극저온의 세계 -->
-      <a class="menu-card active" href="https://liquidn.labbitory.com/">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="2" x2="12" y2="22"></line>
-            <line x1="3.34" y1="7" x2="20.66" y2="17"></line>
-            <line x1="20.66" y1="7" x2="3.34" y2="17"></line>
-            <polyline points="9.5 4 12 2 14.5 4"></polyline>
-            <polyline points="9.5 20 12 22 14.5 20"></polyline>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">극저온의 세계</span>
-          <span class="menu-sub">바로가기 →</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <!-- 신뢰마을 -->
-      <button type="button" class="menu-card active" onclick="openRoleModal()">
-        <span class="menu-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 21h18"></path>
-            <path d="M5 21V10l7-6 7 6v11"></path>
-            <path d="M9 21v-6h6v6"></path>
-          </svg>
-        </span>
-        <span class="menu-body">
-          <span class="menu-title">신뢰마을</span>
-          <span class="menu-sub">청렴 학습 콘텐츠 →</span>
-        </span>
-        <span class="arrow">→</span>
+    <div class="exp-grid">
+      <!-- 신뢰마을 (교사용/학생용 선택) -->
+      <button type="button" class="exp-card" onclick="openRoleModal()">
+        <img class="exp-shot" src="assets/shots/village.webp" alt="신뢰마을 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">청렴 · 실시간 학급 게임</div>
+        <h2 class="exp-title">신뢰마을</h2>
+        <p class="exp-desc">“들키지 않으면 괜찮을까?”를 몸으로 겪어 보는 60분 실시간 학급 게임이에요. 학생은 휴대폰으로 QR을 찍고 로그인 없이 들어와요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사용 · 학생용</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
       </button>
 
-      <!-- 새 강의안은 아래에 .menu-card 를 추가하면 됩니다. -->
+      <!-- AI 없는 날 -->
+      <a class="exp-card" href="https://noai.labbitory.com">
+        <img class="exp-shot" src="assets/shots/noai.webp" alt="AI 없는 날 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">디지털 윤리</div>
+        <h2 class="exp-title">AI 없는 날</h2>
+        <p class="exp-desc">“아무도 모르는데, 어디까지 말할까?” 우리 반의 하루 이야기 속에서 선택하고, 투표와 반 회의로 함께 지킬 약속을 정하는 디지털 윤리 수업이에요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">수업 코드로 참여</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 별빛서가 -->
+      <a class="exp-card" href="https://taro.labbitory.com">
+        <img class="exp-shot" src="assets/shots/taro.webp" alt="별빛서가 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">축제 부스 · 진로 성찰</div>
+        <h2 class="exp-title">별빛서가</h2>
+        <p class="exp-desc">세 장의 카드를 골라 AI 해석을 보며 나를 돌아보고 작은 행동을 떠올려 보는 축제 부스용 체험이에요. 마지막엔 기념 카드를 인쇄해요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">PC·태블릿</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 축제 퀴즈 -->
+      <a class="exp-card" href="https://brainquiz.labbitory.com">
+        <img class="exp-shot" src="assets/shots/brainquiz.webp" alt="축제 퀴즈 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">축제 · 실시간 단답형 퀴즈</div>
+        <h2 class="exp-title">축제 퀴즈</h2>
+        <p class="exp-desc">문제는 무대 전광판에만 나오고, 수백 명이 각자 휴대폰으로 답을 제출하는 실시간 단답형 퀴즈예요. 채점과 집계는 서버가 해요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">휴대폰으로 참여</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 생기부 자율·진로 기록 도우미 -->
+      <a class="exp-card" href="https://specific01.labbitory.com">
+        <img class="exp-shot" src="assets/shots/specific01.webp" alt="생기부 자율·진로 기록 도우미 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">자율활동 · 진로활동 기록</div>
+        <h2 class="exp-title">생기부 자율·진로 기록 도우미</h2>
+        <p class="exp-desc">학생이 활동 당일 소감을 남기면, 교사가 그 기록을 골라 생활기록부 특기사항 초안을 만들어요. 최종 기록은 언제나 교사가 확인하고 고쳐요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">교사 · 학생</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
     </div>
   </main>
 </div>
