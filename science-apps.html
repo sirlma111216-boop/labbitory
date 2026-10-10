@@ -3,13 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>중학교 과학 학습 — 탐구 앱 | labbitory.com</title>
+<title>중학교 과학 학습 | labbitory.com</title>
 <link rel="icon" type="image/png" href="assets/logo-circle.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
+<style>
+  .exp-grid{ max-width:1100px; }
+  .exp-shot{
+    display:block; width:100%; height:auto; aspect-ratio:16 / 10; object-fit:cover; object-position:top;
+    border-radius:14px; border:1px solid #E4EBE9; background:#F2F5F4; margin-bottom:16px;
+  }
+  .exp-tag.all{ color:#C1481F; background:#FCEDE7; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -32,73 +40,99 @@
     </div>
 
     <div class="exp-grid">
-      <!-- 물질의 상태 변화 퀴즈 (1학년) -->
-      <a class="exp-card" href="https://g1-41.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 3h6"></path>
-            <path d="M10 3v6.3L5.1 17.9A1.5 1.5 0 0 0 6.4 20.2h11.2a1.5 1.5 0 0 0 1.3-2.3L14 9.3V3"></path>
-            <path d="M7.4 14.5h9.2"></path>
-          </svg>
-        </div>
-        <div class="exp-no">1학년 · 물질의 상태 변화</div>
-        <h2 class="exp-title">물질의 상태 변화 퀴즈</h2>
-        <p class="exp-desc">고체·액체·기체 사이의 상태 변화를 문제로 풀어 보며, 상태가 변할 때 나타나는 특징을 확인하는 퀴즈 앱입니다.</p>
+      <!-- 1학년 · 뉴턴 인터뷰 신문 제작소 -->
+      <a class="exp-card" href="https://newton.labbitory.com">
+        <img class="exp-shot" src="assets/shots/newton.webp" alt="뉴턴 인터뷰 신문 제작소 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">1학년 · 뉴턴 가상 인터뷰</div>
+        <h2 class="exp-title">뉴턴 인터뷰 신문 제작소</h2>
+        <p class="exp-desc">좋은 질문을 연습하고, AI가 맡은 뉴턴과 가상 인터뷰를 한 뒤 직접 신문 기사를 완성해 PDF로 내려받는 3차시 활동이에요.</p>
         <div class="exp-foot">
           <span class="exp-tag">1학년</span>
-          <span class="exp-go">탐구하기 →</span>
+          <span class="exp-go">들어가기 →</span>
         </div>
       </a>
 
-      <!-- 별과 우주 (2학년) -->
-      <a class="exp-card" href="https://nc1395.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2 14.6 9h7.4l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6 2.3-7.4-6-4.6h7.4Z"></path>
-          </svg>
+      <!-- 1학년 · 달의 비밀 -->
+      <a class="exp-card" href="https://moonlight.labbitory.com">
+        <img class="exp-shot" src="assets/shots/moonlight.webp" alt="달의 비밀 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">1학년 · 달의 위상 변화와 일식·월식</div>
+        <h2 class="exp-title">달의 비밀: 관측에서 우주까지</h2>
+        <p class="exp-desc">실제 달 사진과 천문연구원 자료를 살펴보고, 3D 모형으로 달을 직접 움직이며 위상 변화와 일식·월식을 탐구한 뒤 나만의 달 설명서를 써요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">1학년</span>
+          <span class="exp-go">들어가기 →</span>
         </div>
+      </a>
+
+      <!-- 1학년 · 상태변화 스피드 카드 -->
+      <a class="exp-card" href="https://g1-41.labbitory.com/">
+        <img class="exp-shot" src="assets/shots/g1-41.webp" alt="상태변화 스피드 카드 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">1학년 · 물질의 상태 변화</div>
+        <h2 class="exp-title">상태변화 스피드 카드</h2>
+        <p class="exp-desc">융해·응고·액화·기화·승화 등 상태변화를 실생활 예시 카드로 빠르게 복습하고, 오개념 OX 퀴즈와 학급 랭킹으로 마무리하는 퀴즈예요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">1학년</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 2학년 · Night Code 1395 -->
+      <a class="exp-card" href="https://nc1395.labbitory.com">
+        <img class="exp-shot" src="assets/shots/nc1395.webp" alt="Night Code 1395 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">2학년 · 별과 우주</div>
-        <h2 class="exp-title">별과 우주</h2>
-        <p class="exp-desc">조선 시대 천문도인 <b>천상열차분야지도</b>를 직접 실측해 보며 별자리를 확인하는, 과학과 역사가 만나는 융합 수업입니다.</p>
+        <h2 class="exp-title">Night Code 1395</h2>
+        <p class="exp-desc">국보 천상열차분야지도의 별 자국 크기를 직접 재어 “밝은 별일수록 크게 새겼다”는 규칙을 스스로 발견하는, 과학과 역사가 만나는 2차시 수업이에요.</p>
         <div class="exp-foot">
           <span class="exp-tag">2학년</span>
-          <span class="exp-go">탐구하기 →</span>
+          <span class="exp-go">들어가기 →</span>
         </div>
       </a>
 
-      <!-- 감각과 신경계 (3학년 · 자극과 반응) -->
-      <a class="exp-card" href="https://g3-5.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        </div>
-        <div class="exp-no">3학년 · 자극과 반응</div>
-        <h2 class="exp-title">감각과 신경계</h2>
-        <p class="exp-desc">우리 몸이 자극을 받아들이고 반응하기까지의 과정을, 감각 기관과 신경계의 역할을 중심으로 탐구합니다.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">3학년</span>
-          <span class="exp-go">탐구하기 →</span>
-        </div>
-      </a>
-
-      <!-- 호르몬 (3학년 · 자극과 반응) -->
+      <!-- 3학년 · 몸속 균형 조절 실험실 -->
       <a class="exp-card" href="https://horm.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="7" cy="8" r="3"></circle>
-            <circle cx="17" cy="8" r="3"></circle>
-            <circle cx="12" cy="17" r="3"></circle>
-            <path d="M9.2 9.6 10.5 15M14.8 9.6 13.5 15M9.6 7.4h4.8"></path>
-          </svg>
-        </div>
-        <div class="exp-no">3학년 · 자극과 반응</div>
-        <h2 class="exp-title">호르몬</h2>
-        <p class="exp-desc">우리 몸속 호르몬이 어떻게 신호를 전달해 몸의 기능을 조절하는지, 신경계와 비교하며 탐구합니다.</p>
+        <img class="exp-shot" src="assets/shots/horm.webp" alt="몸속 균형 조절 실험실 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">3학년 · 항상성과 호르몬</div>
+        <h2 class="exp-title">몸속 균형 조절 실험실</h2>
+        <p class="exp-desc">뜨거운 방·추운 방 예측에서 출발해 체온과 혈당량(인슐린·글루카곤) 조절 실험, 호르몬 도감으로 우리 몸의 항상성 원리를 익혀요.</p>
         <div class="exp-foot">
           <span class="exp-tag">3학년</span>
-          <span class="exp-go">탐구하기 →</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 3학년 · 자극과 반응 -->
+      <a class="exp-card" href="https://g305.labbitory.com">
+        <img class="exp-shot" src="assets/shots/g305.webp" alt="자극과 반응 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">3학년 · 자극과 반응</div>
+        <h2 class="exp-title">자극과 반응</h2>
+        <p class="exp-desc">감각 기관 → 신경계 → 반응(무조건 반사·조건 반사)을 정리 파트에서 차근차근 익히고, 게임 파트로 복습하며 혼자서 탐험하는 학습 앱이에요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag">3학년</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 전학년 · 극저온의 세계 -->
+      <a class="exp-card" href="https://liquidn.labbitory.com">
+        <img class="exp-shot" src="assets/shots/liquidn.webp" alt="극저온의 세계 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 과학탐구 캠프</div>
+        <h2 class="exp-title">극저온의 세계</h2>
+        <p class="exp-desc">−196℃ 액화질소를 직접 다루며 극저온에서 일어나는 현상을 체험하고, 관찰 기록과 사진을 모아 탐구 보고서 PDF로 완성하는 3차시 캠프 수업이에요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag all">전학년</span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- 전학년 · 과학 진짜? 가짜? -->
+      <a class="exp-card" href="https://sciquiz01.labbitory.com">
+        <img class="exp-shot" src="assets/shots/sciquiz01.webp" alt="과학 진짜? 가짜? 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 확신 포인트 챌린지</div>
+        <h2 class="exp-title">과학 진짜? 가짜?</h2>
+        <p class="exp-desc">교사 화면의 과학 문장을 보고 학생이 스마트폰으로 진짜·가짜와 확신 포인트를 거는 실시간 참여 게임이에요. 아는 것과 모르는 것을 가려내는 메타인지를 길러요.</p>
+        <div class="exp-foot">
+          <span class="exp-tag all">전학년</span>
+          <span class="exp-go">들어가기 →</span>
         </div>
       </a>
     </div>
