@@ -10,6 +10,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
+<style>
+  :root{ --board:#7C3AED; --arcade:#0E9E94; }
+  .exp-grid{ max-width:1100px; }
+  .exp-shot{
+    display:block; width:100%; height:auto; aspect-ratio:16 / 10; object-fit:cover; object-position:top;
+    border-radius:14px; border:1px solid #E4EBE9; background:#F2F5F4; margin-bottom:16px;
+  }
+  /* 게임 종류는 카드 테두리 색으로 구분 */
+  .exp-card.board{ border:2.5px solid var(--board); }
+  .exp-card.arcade{ border:2.5px solid var(--arcade); }
+  .exp-card.board:hover, .exp-card.board:focus-visible{ border-color:var(--board); box-shadow:0 16px 32px rgba(124,58,237,.20); }
+  .exp-card.arcade:hover, .exp-card.arcade:focus-visible{ border-color:var(--arcade); box-shadow:0 16px 32px rgba(14,158,148,.22); }
+  .kind-chip{ font-size:12px; font-weight:700; padding:5px 12px; border-radius:999px; }
+  .kind-chip.board{ color:var(--board); background:#F1EAFE; }
+  .kind-chip.arcade{ color:#0B7F77; background:#E2F6F3; }
+  .legend{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:-8px 0 clamp(18px,3vh,28px); }
+  .legend .kind-chip{ font-size:13px; padding:7px 14px; background:#FFFFFF; }
+  .legend .kind-chip.board{ border:2px solid var(--board); }
+  .legend .kind-chip.arcade{ border:2px solid var(--arcade); }
+  .exp-foot .chips{ display:flex; gap:6px; flex-wrap:wrap; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -25,96 +46,149 @@
   </header>
 
   <main>
-    <div class="heading" style="margin-bottom:clamp(20px,4vh,36px);">
+    <div class="heading" style="margin-bottom:clamp(18px,3vh,28px);">
       <p class="eyebrow">게임 광장</p>
-      <h1 class="title">쉬는 시간엔 게임 한 판</h1>
-      <p class="subtitle">마음에 드는 게임을 눌러 바로 시작해 보세요.</p>
+      <h1 class="title">우리 반이 함께하는 게임</h1>
+      <p class="subtitle">가입 없이 참여 코드와 닉네임만으로 다 함께 즐겨요.</p>
+    </div>
+
+    <div class="legend" aria-label="게임 구분">
+      <span class="kind-chip board">보드게임</span>
+      <span class="kind-chip arcade">일반게임</span>
     </div>
 
     <div class="exp-grid">
-      <!-- 루미런 -->
-      <a class="exp-card" href="https://gamerun-mlhh.onrender.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="14" cy="4.5" r="2"></circle>
-            <path d="M9 21 11 14l-3-2 1-5 5 2 2 4 3 1"></path>
-            <path d="M11 14l4-1 3 4"></path>
-          </svg>
-        </div>
-        <h2 class="exp-title">루미런</h2>
-        <p class="exp-desc">화면을 옆으로 달리며 장애물을 피하는 2D 횡스크롤 아케이드 게임이에요.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">게임</span>
-          <span class="exp-go">플레이하기 →</span>
-        </div>
-      </a>
-
-      <!-- 브릭픽 -->
-      <a class="exp-card" href="https://brickpick.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="8" height="8" rx="1.5"></rect>
-            <rect x="13" y="3" width="8" height="8" rx="1.5"></rect>
-            <rect x="3" y="13" width="8" height="8" rx="1.5"></rect>
-            <rect x="13" y="13" width="8" height="8" rx="1.5"></rect>
-          </svg>
-        </div>
-        <h2 class="exp-title">브릭픽</h2>
-        <p class="exp-desc">공을 튕겨 벽돌을 깨는 알카노이드류의 벽돌깨기 게임이에요.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">게임</span>
-          <span class="exp-go">플레이하기 →</span>
-        </div>
-      </a>
-
-      <!-- 구슬뽑기 -->
-      <a class="exp-card" href="https://marblepick.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="8" cy="8" r="4"></circle>
-            <circle cx="17" cy="7" r="2.5"></circle>
-            <circle cx="15" cy="17" r="3"></circle>
-          </svg>
-        </div>
-        <h2 class="exp-title">구슬뽑기</h2>
-        <p class="exp-desc">구슬을 떨어뜨려 발표자를 뽑는 추첨 게임이에요.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">게임</span>
-          <span class="exp-go">플레이하기 →</span>
-        </div>
-      </a>
-
-      <!-- 서커스 클래스 -->
-      <a class="exp-card" href="https://circus.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3 21 20H3Z"></path>
-            <path d="M12 3v17"></path>
-            <circle cx="12" cy="2" r="1"></circle>
-          </svg>
-        </div>
-        <h2 class="exp-title">서커스 클래스</h2>
-        <p class="exp-desc">서커스 콘셉트로 즐기는 미니게임이에요.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">게임</span>
-          <span class="exp-go">플레이하기 →</span>
-        </div>
-      </a>
-
-      <!-- 그림 이어말하기 -->
-      <a class="exp-card" href="https://timage.labbitory.com">
-        <div class="exp-thumb" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="15" rx="2"></rect>
-            <circle cx="9" cy="10" r="1.6"></circle>
-            <path d="m3 16 5.5-5 4 4 3.5-3.5L21 16"></path>
-          </svg>
-        </div>
+      <!-- ===== 보드게임 ===== -->
+      <a class="exp-card board" href="https://timage.labbitory.com">
+        <img class="exp-shot" src="assets/shots/timage.webp" alt="그림 이어말하기 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 그림 전달 파티 게임</div>
         <h2 class="exp-title">그림 이어말하기</h2>
-        <p class="exp-desc">그림을 보고 이어서 표현해 보는 미니게임이에요.</p>
+        <p class="exp-desc">제시어 → 그림 → 추측 → 그림 순서로 이야기를 전달하고, 마지막에 다 함께 화면을 보며 어디서 내용이 바뀌었는지 확인해요. 방마다 4~12명.</p>
         <div class="exp-foot">
-          <span class="exp-tag">게임</span>
-          <span class="exp-go">플레이하기 →</span>
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://fourseason.labbitory.com">
+        <img class="exp-shot" src="assets/shots/fourseason.webp" alt="사계절의 지도 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 지도 제작 보드게임</div>
+        <h2 class="exp-title">사계절의 지도</h2>
+        <p class="exp-desc">친구들과 같은 탐험 카드를 보고 동시에 각자 다른 지도를 그려 점수를 겨루는 보드게임이에요. 닉네임만으로 시작해요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://code.labbitory.com">
+        <img class="exp-shot" src="assets/shots/code.webp" alt="코드네임 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 단어 추리 팀 게임</div>
+        <h2 class="exp-title">코드네임</h2>
+        <p class="exp-desc">팀의 스파이마스터가 한 단어 힌트를 주면 팀원들이 우리 편 요원을 찾아내는 단어 추리 게임이에요. 초대 링크로 각자 브라우저에서 함께해요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://rail.labbitory.com">
+        <img class="exp-shot" src="assets/shots/rail.webp" alt="레일메이트 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 철도 보드게임</div>
+        <h2 class="exp-title">레일메이트</h2>
+        <p class="exp-desc">미국·유럽 지도 위에 기차 노선을 이어 목적지를 연결하는 철도 보드게임이에요. 교사가 반을 2~5명 게임방으로 나눠 함께 둬요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://citadel.labbitory.com">
+        <img class="exp-shot" src="assets/shots/citadel.webp" alt="시타델 교실판 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 전략 카드 게임</div>
+        <h2 class="exp-title">시타델 교실판</h2>
+        <p class="exp-desc">매 라운드 비밀 역할을 골라 건물을 짓고 도시를 키우는 전략 카드 게임이에요. 교사가 클래스를 만들면 여러 게임방에서 끝까지 플레이해요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://react.labbitory.com">
+        <img class="exp-shot" src="assets/shots/react.webp" alt="리액션 길드 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 화학 공방 경영</div>
+        <h2 class="exp-title">리액션 길드</h2>
+        <p class="exp-desc">팀이 화학 공방을 운영하며 원료를 사고, 반응 카드로 제품을 만들어 도시의 주문에 납품해요. 최종 자산이 가장 많은 길드가 이겨요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://reaction.labbitory.com">
+        <img class="exp-shot" src="assets/shots/reaction.webp" alt="리액션 카페 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 과학 원리 카페 경영</div>
+        <h2 class="exp-title">리액션 카페</h2>
+        <p class="exp-desc">열·상태 변화·기체의 성질 같은 과학 원리로 메뉴를 만들어 손님에게 파는 팀 대항 카페 운영 게임이에요. 학년별 메뉴판을 고를 수 있어요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card board" href="https://scrapcrown.labbitory.com">
+        <img class="exp-shot" src="assets/shots/scrapcrown.webp" alt="스크랩 크라운 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 팀 대항 로봇 전략</div>
+        <h2 class="exp-title">스크랩 크라운</h2>
+        <p class="exp-desc">팀마다 고철 부품으로 로봇을 조립하고 매 턴 명령 3개를 미리 정하면, 최대 6팀의 로봇이 동시에 움직이며 왕관을 차지하려 겨뤄요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip board">보드게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <!-- ===== 일반게임 ===== -->
+      <a class="exp-card arcade" href="https://gamerun-mlhh.onrender.com/">
+        <img class="exp-shot" src="assets/shots/gamerun.webp" alt="루미 런 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 횡스크롤 아케이드</div>
+        <h2 class="exp-title">루미런</h2>
+        <p class="exp-desc">화면을 옆으로 달리며 장애물을 피하는 2D 횡스크롤 아케이드 게임이에요. 혼자 연습하거나 참가 코드로 친구들과 함께 달려요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip arcade">일반게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card arcade" href="https://brickpick.labbitory.com">
+        <img class="exp-shot" src="assets/shots/brickpick.webp" alt="브릭픽 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 벽돌깨기 · 발표자 정하기</div>
+        <h2 class="exp-title">브릭픽</h2>
+        <p class="exp-desc">학생 닉네임으로 벽돌깨기 경기를 치르고, 그 결과로 이번 발표자를 정해요. 학생이 휴대폰으로 직접 참여할 수도 있어요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip arcade">일반게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card arcade" href="https://marblepick.labbitory.com">
+        <img class="exp-shot" src="assets/shots/marblepick.webp" alt="교실 구슬 레이스 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 구슬 추첨 · 역할 정하기</div>
+        <h2 class="exp-title">구슬뽑기</h2>
+        <p class="exp-desc">구슬이 굴러 결승선을 통과한 순서로 발표자·정리 도우미·문제 선택권을 정해요. 바람·포털·자석 등 8개 맵과 다양한 당첨 규칙이 있어요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip arcade">일반게임</span></span>
+          <span class="exp-go">들어가기 →</span>
+        </div>
+      </a>
+
+      <a class="exp-card arcade" href="https://circus.labbitory.com">
+        <img class="exp-shot" src="assets/shots/circus.webp" alt="서커스 클래스 첫 화면" width="640" height="400" loading="lazy">
+        <div class="exp-no">전학년 · 서커스 도전 게임</div>
+        <h2 class="exp-title">서커스 클래스</h2>
+        <p class="exp-desc">좌우 이동과 타이밍 점프로 6개 서커스 종목에 도전해요. 각자 휴대폰·태블릿으로 동시에 참여하고, 성적과 별도로 당첨자도 뽑을 수 있어요.</p>
+        <div class="exp-foot">
+          <span class="chips"><span class="exp-tag">전학년</span><span class="kind-chip arcade">일반게임</span></span>
+          <span class="exp-go">들어가기 →</span>
         </div>
       </a>
     </div>
