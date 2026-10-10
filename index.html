@@ -147,6 +147,17 @@
   }
   .mascot-row img{ width:auto; filter:drop-shadow(0 16px 22px rgba(14,158,148,.20)); }
   .m-wave{ height:clamp(150px,26vh,250px); display:block; }
+
+  /* ===== 등장 애니메이션: 토끼가 화면 오른쪽 밖에서 뛰어와 가운데에서 변신 ===== */
+  /* --mascot-h = 변신 후 토끼의 키. 무대 높이는 원본 장면(425px)과 토끼 키(292px)의 비율로 정함 */
+  .intro-stage{
+    --mascot-h:clamp(150px,26vh,250px);
+    position:relative; width:100%; height:calc(var(--mascot-h) * 425 / 292);
+    margin:calc(var(--mascot-h) * -0.16) 0 calc(var(--mascot-h) * -0.22);
+    pointer-events:none;
+  }
+  .intro-stage canvas{ position:absolute; top:0; height:100%; display:block; }
+  .intro-stage noscript img{ display:block; margin:0 auto; height:var(--mascot-h); width:auto; }
   .bubble{ position:absolute; border-radius:50%; }
   .bubble-1{ top:18px; right:-18px; width:14px; height:14px; background:#2DD4BF; opacity:.85;
     animation:lab-bubble 3.4s ease-in-out infinite; }
@@ -270,18 +281,20 @@
 
   /* ===== MOBILE ===== */
   @media (max-width:640px){
-    .page{ padding:20px 18px 24px; overflow-y:auto; }
+    .page{ padding:20px 18px 24px; overflow-y:auto; overflow-x:clip; }
     header{ flex-direction:column; gap:14px; }
     .logo{ width:84px; height:84px; }
     nav{ gap:8px; }
     .tab{ padding:11px 18px; font-size:14px; }
     .m-wave{ height:138px; }
+    .intro-stage{ --mascot-h:138px; }
     .wordmark{ font-size:clamp(44px,15vw,76px); }
     .tagline{ font-size:15px; padding:0 6px; }
     .cta{ font-size:15px; padding:14px 24px; }
   }
   @media (max-width:380px){
     .m-wave{ height:118px; }
+    .intro-stage{ --mascot-h:118px; }
     .wordmark{ font-size:42px; }
   }
   @media (prefers-reduced-motion:reduce){
@@ -318,6 +331,7 @@
 
   <!-- ===== HERO ===== -->
   <main>
+    <!-- 이전 정지 마스코트 — 화면에서만 숨김, 나중에 다시 노출할 수 있습니다.
     <div class="mascots">
       <div class="glow"></div>
       <div class="mascot-row">
@@ -325,6 +339,11 @@
       </div>
       <div class="bubble bubble-1"></div>
       <div class="bubble bubble-2"></div>
+    </div>
+    -->
+    <div class="intro-stage" id="intro-stage" role="img" aria-label="토끼가 뛰어와 래비토리 마스코트로 변신하는 장면">
+      <canvas id="intro-canvas"></canvas>
+      <noscript><img src="assets/mascot-wave.png" alt="래비토리 마스코트"></noscript>
     </div>
 
     <h1 class="wordmark">labbitory<span class="dot">.com</span></h1>
@@ -540,6 +559,68 @@
     document.getElementById('menu-modal').classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
+  // ===== 등장 애니메이션 =====
+  // 원본 GIF(1440×520, 82프레임)에서 21~81번 프레임만 잘라 assets/rabbit-intro.webp 한 장에 모았다.
+  // 원본에서 토끼는 20프레임마다 같은 동작으로 297px 전진하므로, 화면 폭에 맞춰 그 한 바퀴(앞 20프레임)를
+  // 필요한 만큼 더 반복해 화면 오른쪽 바깥에서 출발시키고, 나머지(41~81번)는 원본 그대로 가운데에서 변신한다.
+  // 행: [아틀라스 x, y, 폭, 높이, 장면 가운데로부터의 x, 장면 위(원본 y=70)로부터의 y, 표시 시간 ms]
+  (function(){
+    var FR = [[0,0,241,202,400,87,40],[243,0,185,167,404,112,50],[430,0,185,167,379,106,40],[617,0,185,167,355,106,40],[804,0,199,193,324,86,40],[1005,0,199,193,300,97,40],[1206,0,197,201,276,106,40],[1405,0,197,201,252,129,40],[1604,0,227,187,213,173,50],[0,204,227,187,207,173,40],[229,204,196,184,216,176,40],[427,204,196,184,210,176,40],[625,204,201,172,202,188,40],[828,204,201,172,196,188,50],[1031,204,193,179,200,181,40],[1226,204,190,206,202,154,160],[1418,204,202,184,195,176,90],[1622,204,217,221,188,139,40],[0,427,241,210,152,120,40],[243,427,241,202,127,105,40],[486,427,241,202,103,87,40],[729,427,185,167,107,112,50],[916,427,185,167,83,106,40],[1103,427,185,167,59,106,40],[1290,427,199,193,27,86,40],[1491,427,199,193,3,97,40],[1692,427,197,201,-20,106,40],[0,639,197,201,-45,129,40],[199,639,227,187,-84,173,50],[428,639,227,187,-90,173,40],[657,639,196,184,-81,176,40],[855,639,196,184,-87,176,40],[1053,639,201,172,-95,188,40],[1256,639,201,172,-100,188,50],[1459,639,193,179,-96,181,40],[1654,639,190,206,-95,154,80],[1846,639,202,184,-102,176,40],[0,847,210,176,-106,184,40],[212,847,219,169,-110,191,40],[433,847,266,242,-133,118,50],[701,847,528,330,-264,36,40],[1231,847,631,394,-315,4,40],[0,1243,631,394,-315,4,40],[633,1243,390,293,-195,53,40],[1025,1243,448,295,-224,44,50],[1475,1243,477,317,-236,35,40],[0,1639,517,334,-255,29,40],[519,1639,552,349,-271,24,40],[1073,1639,583,361,-285,21,40],[0,2002,610,372,-298,21,40],[612,2002,635,381,-311,23,40],[1249,2002,612,387,-323,25,50],[0,2391,629,396,-332,24,40],[631,2391,608,370,-335,23,40],[1241,2391,188,292,-94,51,40],[1431,2391,188,292,-94,61,40],[1621,2391,192,286,-96,69,50],[1815,2391,194,282,-97,73,80],[0,2789,191,286,-95,69,40],[193,2789,189,290,-95,65,40],[384,2789,188,292,-94,63,1460]];
+    var CYCLE = 20, STEP = 297, SCENE_H = 425;
+    var stage = document.getElementById('intro-stage');
+    var canvas = document.getElementById('intro-canvas');
+    if (!stage || !canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var atlas = new Image();
+    var cw = 0, s = 1, seq = [], pos = 0, done = false;
+
+    function layout(){
+      var rect = stage.getBoundingClientRect();
+      var dpr = window.devicePixelRatio || 1;
+      cw = document.documentElement.clientWidth;
+      s = rect.height / SCENE_H;
+      canvas.style.left = (-rect.left) + 'px';
+      canvas.style.width = cw + 'px';
+      canvas.width = Math.round(cw * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.imageSmoothingQuality = 'high';
+    }
+    function draw(step){
+      var f = FR[step[0]];
+      ctx.clearRect(0, 0, cw, canvas.height);
+      ctx.drawImage(atlas, f[0], f[1], f[2], f[3], cw / 2 + (f[4] + step[1]) * s, f[5] * s, f[2] * s, f[3] * s);
+    }
+    function build(){
+      // 첫 프레임의 토끼 왼쪽 끝이 화면 오른쪽 끝보다 더 오른쪽에 있도록 반복 횟수를 정한다.
+      var need = (cw / 2) / s + 12 - FR[0][4];
+      var extra = Math.max(0, Math.ceil(need / STEP));
+      seq = [];
+      for (var c = extra; c >= 0; c--) for (var i = 0; i < CYCLE; i++) seq.push([i, STEP * c]);
+      for (var j = CYCLE; j < FR.length; j++) seq.push([j, 0]);
+    }
+    function tick(){
+      draw(seq[pos]);
+      if (pos === seq.length - 1) { done = true; return; }
+      var wait = FR[seq[pos][0]][6];
+      pos++;
+      setTimeout(tick, wait);
+    }
+    atlas.onload = function(){
+      layout(); build();
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        pos = seq.length - 1; tick(); return;
+      }
+      setTimeout(tick, 300);
+    };
+    atlas.src = 'assets/rabbit-intro.webp';
+    window.addEventListener('resize', function(){
+      if (!atlas.complete || !seq.length) return;
+      layout();
+      draw(done ? seq[seq.length - 1] : seq[Math.max(0, pos - 1)]);
+    });
+  })();
+
   function closeMenu(){
     document.getElementById('menu-modal').classList.remove('is-open');
     document.body.style.overflow = '';
