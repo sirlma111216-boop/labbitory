@@ -156,8 +156,37 @@
     margin:calc(var(--mascot-h) * -0.16) 0 calc(var(--mascot-h) * -0.22);
     pointer-events:none;
   }
-  .intro-stage canvas{ position:absolute; top:0; height:100%; display:block; }
+  /* 장면 아래쪽(발끝 아래, 원본 y≈431 이하)을 부드럽게 지워, 변신 때 흩어지는 반짝이가
+     로고 글자 뒤에서 잔해처럼 잘려 보이지 않게 함. 뛰는 토끼의 발(y≈429)은 남는 위치. */
+  .intro-stage canvas{
+    position:absolute; top:0; height:100%; display:block; z-index:1;
+    transform-origin:50% 49%;
+    -webkit-mask-image:linear-gradient(to bottom, #000 85%, transparent 89%);
+            mask-image:linear-gradient(to bottom, #000 85%, transparent 89%);
+  }
   .intro-stage noscript img{ display:block; margin:0 auto; height:var(--mascot-h); width:auto; }
+
+  /* 변신이 끝나면: 은은한 광채 + 방울 + 둥실둥실 */
+  .intro-glow, .intro-bubble{ position:absolute; opacity:0; transition:opacity 1.4s ease; pointer-events:none; }
+  .intro-glow{
+    left:50%; top:49%; width:calc(var(--mascot-h) * 1.25); height:calc(var(--mascot-h) * 1.25);
+    transform:translate(-50%,-50%); border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(45,212,191,.26), rgba(45,212,191,0) 68%);
+    filter:blur(6px);
+  }
+  .intro-bubble{ border-radius:50%; z-index:2; }
+  .intro-bubble.b1{ left:calc(50% + var(--mascot-h) * .36); top:22%; width:14px; height:14px; background:#2DD4BF; }
+  .intro-bubble.b2{ left:calc(50% - var(--mascot-h) * .46); top:62%; width:9px; height:9px; background:#F4623A; }
+  .intro-stage.is-done .intro-glow{ opacity:1; }
+  .intro-stage.is-done .intro-bubble.b1{ opacity:.85; animation:lab-bubble 3.4s ease-in-out infinite; }
+  .intro-stage.is-done .intro-bubble.b2{ opacity:.7; animation:lab-bubble 2.6s ease-in-out .6s infinite; }
+  .intro-stage.is-done canvas{ animation:intro-float 6s ease-in-out .4s infinite; }
+  @keyframes intro-float{
+    0%,100%{ transform:translateY(0) rotate(0); }
+    25%{ transform:translateY(-6px) rotate(-1deg); }
+    50%{ transform:translateY(-12px) rotate(0); }
+    75%{ transform:translateY(-6px) rotate(1deg); }
+  }
   .bubble{ position:absolute; border-radius:50%; }
   .bubble-1{ top:18px; right:-18px; width:14px; height:14px; background:#2DD4BF; opacity:.85;
     animation:lab-bubble 3.4s ease-in-out infinite; }
@@ -299,6 +328,7 @@
   }
   @media (prefers-reduced-motion:reduce){
     .mascots,.bubble-1,.bubble-2{ animation:none; }
+    .intro-stage.is-done canvas, .intro-stage.is-done .intro-bubble{ animation:none; }
   }
 </style>
 </head>
@@ -342,7 +372,10 @@
     </div>
     -->
     <div class="intro-stage" id="intro-stage" role="img" aria-label="토끼가 뛰어와 래비토리 마스코트로 변신하는 장면">
+      <div class="intro-glow"></div>
       <canvas id="intro-canvas"></canvas>
+      <span class="intro-bubble b1"></span>
+      <span class="intro-bubble b2"></span>
       <noscript><img src="assets/mascot-wave.png" alt="래비토리 마스코트"></noscript>
     </div>
 
@@ -601,7 +634,7 @@
     }
     function tick(){
       draw(seq[pos]);
-      if (pos === seq.length - 1) { done = true; return; }
+      if (pos === seq.length - 1) { done = true; stage.classList.add('is-done'); return; }
       var wait = FR[seq[pos][0]][6];
       pos++;
       setTimeout(tick, wait);
