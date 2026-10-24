@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>대학생과 함께 | labbitory.com</title>
 <link rel="icon" type="image/png" href="assets/logo-circle.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
 <style>
   .exp-grid{ max-width:820px; }
@@ -17,6 +13,7 @@
     border-radius:14px; border:1px solid #E4EBE9; background:#F2F5F4; margin-bottom:16px;
   }
 </style>
+<link rel="stylesheet" href="assets/privacy-nav.css">
 </head>
 <body>
 <div class="page">
@@ -39,7 +36,7 @@
     </div>
 
     <div class="exp-grid">
-      <a class="exp-card" href="https://scienced.labbitory.com">
+      <div class="app-with-privacy"><a class="exp-card" href="https://scienced.labbitory.com">
         <img class="exp-shot" src="assets/shots/scienced.webp" alt="Science Lesson Studio 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">경희대학교 · 과학교과교수법 18차시 · 과학교육론 12차시</div>
         <h2 class="exp-title">과학교과교수법 / 과학교육론</h2>
@@ -48,9 +45,9 @@
           <span class="exp-tag">수강생 로그인</span>
           <span class="exp-go">들어가기 →</span>
         </div>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#scienced">과학교과교수법 / 과학교육론 · 저장·전송 안내</a></div>
 
-      <a class="exp-card" href="https://digitaledu.labbitory.com">
+      <div class="app-with-privacy"><a class="exp-card" href="https://digitaledu.labbitory.com">
         <img class="exp-shot" src="assets/shots/digitaledu.webp" alt="디지털 교육 15차시 포털 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">경희대학교 · 15차시 강의 포털</div>
         <h2 class="exp-title">디지털 교육</h2>
@@ -59,9 +56,10 @@
           <span class="exp-tag">15차시</span>
           <span class="exp-go">들어가기 →</span>
         </div>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#digitaledu">디지털 교육 · 저장·전송 안내</a></div>
     </div>
   </main>
 </div>
+<aside class="privacy-nav" aria-label="개인정보 안내"><a href="privacy.html">개인정보처리방침</a><a href="app-privacy.html">앱별 저장·전송 안내</a><a href="privacy-help.html">열람·삭제 요청</a></aside>
 </body>
 </html>

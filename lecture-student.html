@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>학생과 함께 | labbitory.com</title>
 <link rel="icon" type="image/png" href="assets/logo-circle.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="assets/app.css">
 <style>
   .exp-grid{ max-width:1100px; }
@@ -53,6 +49,7 @@
   .role-choice .rc-name{ font-size:16.5px; font-weight:700; }
   .role-choice .rc-go{ margin-left:auto; font-size:19px; font-weight:700; color:#0E9E94; }
 </style>
+<link rel="stylesheet" href="assets/privacy-nav.css">
 </head>
 <body>
 <div class="page">
@@ -87,20 +84,11 @@
         </div>
       </button>
 
-      <!-- AI 없는 날 -->
-      <a class="exp-card" href="https://noai.labbitory.com">
-        <img class="exp-shot" src="assets/shots/noai.webp" alt="AI 없는 날 첫 화면" width="640" height="400" loading="lazy">
-        <div class="exp-no">디지털 윤리</div>
-        <h2 class="exp-title">AI 없는 날</h2>
-        <p class="exp-desc">“아무도 모르는데, 어디까지 말할까?” 우리 반의 하루 이야기 속에서 선택하고, 투표와 반 회의로 함께 지킬 약속을 정하는 디지털 윤리 수업이에요.</p>
-        <div class="exp-foot">
-          <span class="exp-tag">수업 코드로 참여</span>
-          <span class="exp-go">들어가기 →</span>
-        </div>
-      </a>
+      
+      
 
       <!-- 별빛서가 -->
-      <a class="exp-card" href="https://taro.labbitory.com">
+      <div class="app-with-privacy"><a class="exp-card" href="https://taro.labbitory.com">
         <img class="exp-shot" src="assets/shots/taro.webp" alt="별빛서가 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">축제 부스 · 진로 성찰</div>
         <h2 class="exp-title">별빛서가</h2>
@@ -109,10 +97,10 @@
           <span class="exp-tag">PC·태블릿</span>
           <span class="exp-go">들어가기 →</span>
         </div>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#taro">별빛서가 · 저장·전송 안내</a></div>
 
       <!-- 축제 퀴즈 -->
-      <a class="exp-card" href="https://brainquiz.labbitory.com">
+      <div class="app-with-privacy"><a class="exp-card" href="https://brainquiz.labbitory.com">
         <img class="exp-shot" src="assets/shots/brainquiz.webp" alt="축제 퀴즈 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">축제 · 실시간 단답형 퀴즈</div>
         <h2 class="exp-title">축제 퀴즈</h2>
@@ -121,10 +109,10 @@
           <span class="exp-tag">휴대폰으로 참여</span>
           <span class="exp-go">들어가기 →</span>
         </div>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#brainquiz">축제 퀴즈 · 저장·전송 안내</a></div>
 
       <!-- 생기부 자율·진로 기록 도우미 -->
-      <a class="exp-card" href="https://specific01.labbitory.com">
+      <div class="app-with-privacy"><a class="exp-card" href="https://specific01.labbitory.com">
         <img class="exp-shot" src="assets/shots/specific01.webp" alt="생기부 자율·진로 기록 도우미 첫 화면" width="640" height="400" loading="lazy">
         <div class="exp-no">자율활동 · 진로활동 기록</div>
         <h2 class="exp-title">생기부 자율·진로 기록 도우미</h2>
@@ -133,7 +121,7 @@
           <span class="exp-tag">교사 · 학생</span>
           <span class="exp-go">들어가기 →</span>
         </div>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#specific01">생기부 자율·진로 기록 도우미 · 저장·전송 안내</a></div>
     </div>
   </main>
 </div>
@@ -152,7 +140,7 @@
       <a class="role-choice" href="https://village.labbitory.com">
         <span class="rc-name">학생용</span>
         <span class="rc-go">→</span>
-      </a>
+      </a><a class="app-data-link" href="app-privacy.html#village">신뢰마을 · 저장·전송 안내</a>
     </div>
   </div>
 </div>
@@ -168,5 +156,6 @@
   }
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeRoleModal(); });
 </script>
+<aside class="privacy-nav" aria-label="개인정보 안내"><a href="privacy.html">개인정보처리방침</a><a href="app-privacy.html">앱별 저장·전송 안내</a><a href="privacy-help.html">열람·삭제 요청</a></aside>
 </body>
 </html>
